@@ -1,0 +1,2651 @@
+use dmk_db
+switched to db dmk_db
+db.students.insertMany([
+{
+student_id:1,
+name:"Saran",
+department:"CSE",
+city:"Bangalore",
+cgpa:8.5,
+age:21,
+gender:"Male"
+},
+{
+student_id:2,
+name:"Priya",
+department:"ECE",
+city:"Hyderabad",
+cgpa:9.0,
+age:22,
+gender:"Female"
+},
+{
+student_id:3,
+name:"Rahul",
+department:"CSE",
+city:"Chennai",
+cgpa:7.8,
+age:21,
+gender:"Male"
+},
+{
+student_id:4,
+name:"Deepa",
+department:"EEE",
+city:"Bangalore",
+cgpa:8.9,
+age:22,
+gender:"Female"
+},
+{
+student_id:5,
+name:"Anjali",
+department:"ECE",
+city:"Pune",
+cgpa:8.2,
+age:20,
+gender:"Female"
+},
+{
+student_id:6,
+name:"Kumar",
+department:"Mechanical",
+city:"Hyderabad",
+cgpa:7.5,
+age:23,
+gender:"Male"
+},
+{
+student_id:7,
+name:"Sneha",
+department:"CSE",
+city:"Bangalore",
+cgpa:9.1,
+age:21,
+gender:"Female"
+},
+{
+student_id:8,
+name:"Varun",
+department:"Civil",
+city:"Chennai",
+cgpa:8.0,
+age:22,
+gender:"Male"
+},
+{
+student_id:9,
+name:"Charan",
+department:"Mechanical",
+city:"Pune",
+cgpa:7.2,
+age:23,
+gender:"Male"
+},
+{
+student_id:10,
+name:"Harsha",
+department:"CSE",
+city:"Hyderabad",
+cgpa:8.7,
+age:21,
+gender:"Male"
+}
+]);
+{
+acknowledged: true,
+insertedIds: {
+'0': ObjectId('6a33ca06f24be2ae9cad7b64'),
+'1': ObjectId('6a33ca06f24be2ae9cad7b65'),
+'2': ObjectId('6a33ca06f24be2ae9cad7b66'),
+'3': ObjectId('6a33ca06f24be2ae9cad7b67'),
+'4': ObjectId('6a33ca06f24be2ae9cad7b68'),
+'5': ObjectId('6a33ca06f24be2ae9cad7b69'),
+'6': ObjectId('6a33ca06f24be2ae9cad7b6a'),
+'7': ObjectId('6a33ca06f24be2ae9cad7b6b'),
+'8': ObjectId('6a33ca06f24be2ae9cad7b6c'),
+'9': ObjectId('6a33ca06f24be2ae9cad7b6d')
+}
+}
+db.students.aggregate([{$group:{_id:"student_id",totalstudents:{$sum:1}}}])
+{
+_id: 'student_id',
+totalstudents: 10
+}
+db.students.aggregate([{$group:{_id:"department",totalstudents:{$sum:1}}}])
+{
+_id: 'department',
+totalstudents: 10
+}
+db.students.aggregate([{$group:{_id:"$department",totalstudents:{$sum:1}}}])
+{
+_id: 'ECE',
+totalstudents: 2
+}
+{
+_id: 'EEE',
+totalstudents: 1
+}
+{
+_id: 'CSE',
+totalstudents: 4
+}
+{
+_id: 'Mechanical',
+totalstudents: 2
+}
+{
+_id: 'Civil',
+totalstudents: 1
+}
+db.students.aggregate([{$group:{_id:"$city",totalstudents:{$sum:1}}}])
+{
+_id: 'Hyderabad',
+totalstudents: 3
+}
+{
+_id: 'Bangalore',
+totalstudents: 3
+}
+{
+_id: 'Chennai',
+totalstudents: 2
+}
+{
+_id: 'Pune',
+totalstudents: 2
+}
+db.students.aggregate([{$group:{_id:"$male",totalstudents:{$sum:1}}}])
+{
+_id: null,
+totalstudents: 10
+}
+db.students.aggregate([{$group:{gender:"$male",totalstudents:{$sum:1}}}])
+MongoServerError[Location40234]: The field 'gender' must be an accumulator object
+db.students.aggregate([{$group:{_id:"$gender",totalstudents:{$sum:1},{$match:{gender:"male"}}}}])
+SyntaxError: Unexpected token (1:69)
+
+> 1 | db.students.aggregate([{$group:{_id:"$gender",totalstudents:{$sum:1},{$match:{gender:"male"}}}}])
+    |                                                                      ^
+db.students.aggregate([
+{$match:{gender:"Male"}},
+{$count:"male_students"}
+])
+{
+male_students: 6
+}
+db.students.aggregate([
+{$match:{gender:"feMale"}},
+{$count:"male_students"}
+])
+
+db.students.aggregate([
+{$match:{gender:"Female"}},
+{$count:"male_students"}
+])
+{
+male_students: 4
+}
+db.students.aggregate([
+{$match:{gender:"Female"}},
+{$count:"female_students"}
+])
+{
+female_students: 4
+}
+db.students.aggregate([{$group:{_id:"$null",averagecgpa:{$avg:"$cgpa"}}])
+SyntaxError: Unexpected token, expected "," (1:71)
+
+> 1 | db.students.aggregate([{$group:{_id:"$null",averagecgpa:{$avg:"$cgpa"}}])
+    |                                                                        ^
+db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:"$cgpa"}}])
+SyntaxError: Unexpected token, expected "," (1:76)
+
+> 1 | db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:"$cgpa"}}])
+    |                                                                             ^
+db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:$cgpa}}])
+SyntaxError: Unexpected token, expected "," (1:74)
+
+> 1 | db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:$cgpa}}])
+    |                                                                           ^
+db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:"$cgpa"}}}])
+{
+_id: 'student_id',
+averagecgpa: 8.290000000000001
+}
+db.students.aggregate([{$group:{_id:"$department",averagecgpa:{$avg:"$cgpa"}}}])
+{
+_id: 'CSE',
+averagecgpa: 8.524999999999999
+}
+{
+_id: 'EEE',
+averagecgpa: 8.9
+}
+{
+_id: 'Mechanical',
+averagecgpa: 7.35
+}
+{
+_id: 'ECE',
+averagecgpa: 8.6
+}
+{
+_id: 'Civil',
+averagecgpa: 8
+}
+db.students.aggregate([{$group:{_id:"$department",averageage:{$avg:"$age"}}}])
+{
+_id: 'ECE',
+averageage: 21
+}
+{
+_id: 'EEE',
+averageage: 22
+}
+{
+_id: 'CSE',
+averageage: 21
+}
+{
+_id: 'Mechanical',
+averageage: 23
+}
+{
+_id: 'Civil',
+averageage: 22
+}
+db.students.aggregate([{$group:{_id:"$department",averageage:{$avg:"$city"}}}])
+{
+_id: 'EEE',
+averageage: null
+}
+{
+_id: 'ECE',
+averageage: null
+}
+{
+_id: 'Mechanical',
+averageage: null
+}
+{
+_id: 'CSE',
+averageage: null
+}
+{
+_id: 'Civil',
+averageage: null
+}
+db.students.aggregate([{$group:{_id:"$city",averagecgpa:{$avg:"$cgpa"}}}])
+{
+_id: 'Pune',
+averagecgpa: 7.699999999999999
+}
+{
+_id: 'Bangalore',
+averagecgpa: 8.833333333333334
+}
+{
+_id: 'Hyderabad',
+averagecgpa: 8.4
+}
+{
+_id: 'Chennai',
+averagecgpa: 7.9
+}
+db.students.aggregate([{$group:{_id:"$student_id",averageage:{$avg:"$age"}}}])
+{
+_id: 1,
+averageage: 21
+}
+{
+_id: 6,
+averageage: 23
+}
+{
+_id: 8,
+averageage: 22
+}
+{
+_id: 9,
+averageage: 23
+}
+{
+_id: 2,
+averageage: 22
+}
+{
+_id: 7,
+averageage: 21
+}
+{
+_id: 10,
+averageage: 21
+}
+{
+_id: 3,
+averageage: 21
+}
+{
+_id: 4,
+averageage: 22
+}
+{
+_id: 5,
+averageage: 20
+}
+db.students.aggregate([{$group:{_id:"$null",sumcgpa:{$sum:"$cgpa"}}}])
+{
+_id: null,
+sumcgpa: 82.9
+}
+db.students.aggregate([{$group:{_id:"$null",sumcgpa:{$sum:"$age"}}}])
+{
+_id: null,
+sumcgpa: 216
+}
+db.students.aggregate([{$group:{_id:"$department",sumcgpa:{$sum:"$cgpa"}}}])
+{
+_id: 'CSE',
+sumcgpa: 34.099999999999994
+}
+{
+_id: 'EEE',
+sumcgpa: 8.9
+}
+{
+_id: 'Mechanical',
+sumcgpa: 14.7
+}
+{
+_id: 'ECE',
+sumcgpa: 17.2
+}
+{
+_id: 'Civil',
+sumcgpa: 8
+}
+db.students.aggregate([{$group:{_id:"$city",sumcgpa:{$sum:"$age"}}}])
+{
+_id: 'Chennai',
+sumcgpa: 43
+}
+{
+_id: 'Hyderabad',
+sumcgpa: 66
+}
+{
+_id: 'Pune',
+sumcgpa: 43
+}
+{
+_id: 'Bangalore',
+sumcgpa: 64
+}
+db.students.aggregate([
+  {
+    $match: { department: "CSE" }
+  },
+  {
+    $group: {
+      _id: null,
+      totalCGPA: { $sum: "$cgpa" }
+    }
+  }
+])
+{
+_id: null,
+totalCGPA: 34.099999999999994
+}
+db.students.aggregate([{$group:{_id:"$null",maxcgpa:{$max:"$cgpa"}}}])
+{
+_id: null,
+maxcgpa: 9.1
+}
+db.students.aggregate([{$group:{_id:"$null",maxage:{$max:"$age"}}}])
+{
+_id: null,
+maxage: 23
+}
+db.students.aggregate([{$group:{_id:"$department",maxcgpa:{$max:"$cgpa"}}}])
+{
+_id: 'ECE',
+maxcgpa: 9
+}
+{
+_id: 'EEE',
+maxcgpa: 8.9
+}
+{
+_id: 'CSE',
+maxcgpa: 9.1
+}
+
+{
+_id: 'Mechanical',
+maxcgpa: 7.5
+}
+
+{
+_id: 'Civil',
+maxcgpa: 8
+}
+
+db.students.aggregate([{$group:{_id:"$city",maxage:{$max:"$age"}}}])
+{
+_id: 'Pune',
+maxage: 23
+}
+{
+_id: 'Bangalore',
+maxage: 22
+}
+{
+_id: 'Hyderabad',
+maxage: 23
+}
+{
+_id: 'Chennai',
+maxage: 22
+}
+db.students.aggregate([
+  {
+    $group: {
+      _id: "$department",
+      avgCGPA: { $avg: "$cgpa" }
+    }
+  },
+  {
+    $sort: { avgCGPA: -1 }
+  },
+  {
+    $limit: 1
+  }
+])
+{
+_id: 'EEE',
+avgCGPA: 8.9
+}
+db.students.aggregate([{$group:{_id:"$null",mincgpa:{$min:"$cgpa"}}}])
+{
+_id: null,
+mincgpa: 7.2
+}
+db.students.aggregate([{$group:{_id:"$null",minage:{$min:"$age"}}}])
+{
+_id: null,
+minage: 20
+}
+db.students.aggregate([{$group:{_id:"$department",mincgpa:{$min:"$cgpa"}}}])
+{
+_id: 'Mechanical',
+mincgpa: 7.2
+}
+{
+_id: 'ECE',
+mincgpa: 8.2
+}
+{
+_id: 'Civil',
+mincgpa: 8
+}
+{
+_id: 'EEE',
+mincgpa: 8.9
+}
+{
+_id: 'CSE',
+mincgpa: 7.8
+}
+db.students.aggregate([{$group:{_id:"$city",minage:{$min:"$age"}}}])
+{
+_id: 'Hyderabad',
+minage: 21
+}
+{
+_id: 'Chennai',
+minage: 21
+}
+{
+_id: 'Pune',
+minage: 20
+}
+{
+_id: 'Bangalore',
+minage: 21
+}
+db.students.aggregate([
+  {
+    $group: {
+      _id: "$city",
+      avgCGPA: { $avg: "$cgpa" }
+    }
+  },
+  {
+    $sort: { avgCGPA: 1 }
+  },
+  {
+    $limit: 1
+  }
+])
+{
+_id: 'Pune',
+avgCGPA: 7.699999999999999
+}
+db.students.aggregate([{$group:{_id:"$department",minage:{$sum:1}}])
+SyntaxError: Unexpected token, expected "," (1:66)
+
+> 1 | db.students.aggregate([{$group:{_id:"$department",minage:{$sum:1}}])
+    |                                                                   ^
+db.students.aggregate([{$group:{_id:"$department",totalstudents:{$sum:1}}])
+SyntaxError: Unexpected token, expected "," (1:73)
+
+> 1 | db.students.aggregate([{$group:{_id:"$department",totalstudents:{$sum:1}}])
+    |                                                                          ^
+db.students.aggregate([
+  {
+    $group: {
+      _id: "$department",
+      studentCount: { $sum: 1 }
+    }
+  }
+])
+{
+_id: 'EEE',
+studentCount: 1
+}
+{
+_id: 'ECE',
+studentCount: 2
+}
+{
+_id: 'Mechanical',
+studentCount: 2
+}
+{
+_id: 'CSE',
+studentCount: 4
+}
+{
+_id: 'Civil',
+studentCount: 1
+}
+db.students.aggregate([
+  {
+    $group: {
+      _id: "$city",
+      studentCount: { $sum: 1 }
+    }
+  }
+])
+{
+_id: 'Chennai',
+studentCount: 2
+}
+{
+_id: 'Hyderabad',
+studentCount: 3
+}
+{
+_id: 'Pune',
+studentCount: 2
+}
+{
+_id: 'Bangalore',
+studentCount: 3
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$gender",
+count:{$sum:1}
+}
+}
+])
+{
+_id: 'Female',
+count: 4
+}
+{
+_id: 'Male',
+count: 6
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$department",
+avgCGPA:{$avg:"$cgpa"}
+}
+}
+])
+{
+_id: 'Mechanical',
+avgCGPA: 7.35
+}
+{
+_id: 'ECE',
+avgCGPA: 8.6
+}
+{
+_id: 'Civil',
+avgCGPA: 8
+}
+{
+_id: 'EEE',
+avgCGPA: 8.9
+}
+{
+_id: 'CSE',
+avgCGPA: 8.524999999999999
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$city",
+avgAge:{$avg:"$age"}
+}
+}
+])
+{
+_id: 'Chennai',
+avgAge: 21.5
+}
+{
+_id: 'Bangalore',
+avgAge: 21.333333333333332
+}
+{
+_id: 'Pune',
+avgAge: 21.5
+}
+{
+_id: 'Hyderabad',
+avgAge: 22
+}
+db.students.aggregate([
+{
+$match:{cgpa:{$gt:8}}
+},
+{
+$count:"studentCount"
+}
+])
+{
+studentCount: 6
+}
+db.students.aggregate([
+{
+$match:{department:"CSE"}
+},
+{
+$group:{
+_id:null,
+avgCGPA:{$avg:"$cgpa"}
+}
+}
+])
+{
+_id: null,
+avgCGPA: 8.524999999999999
+}
+db.students.aggregate([
+{
+$match:{gender:"Female"}
+},
+{
+$count:"femaleStudents"
+}
+])
+{
+femaleStudents: 4
+}
+db.students.aggregate([
+{
+$match:{gender:"Male"}
+},
+{
+$group:{
+_id:null,
+maxCGPA:{$max:"$cgpa"}
+}
+}
+])
+{
+_id: null,
+maxCGPA: 8.7
+}
+
+db.students.aggregate([
+{
+$match:{gender:"Female"}
+},
+{
+$group:{
+_id:null,
+minCGPA:{$min:"$cgpa"}
+}
+}
+])
+{
+_id: null,
+minCGPA: 8.2
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$department",
+avgCGPA:{$avg:"$cgpa"}
+}
+},
+{
+$sort:{avgCGPA:-1}
+}
+])
+{
+_id: 'EEE',
+avgCGPA: 8.9
+}
+{
+_id: 'ECE',
+avgCGPA: 8.6
+}
+{
+_id: 'CSE',
+avgCGPA: 8.524999999999999
+}
+{
+_id: 'Civil',
+avgCGPA: 8
+}
+{
+_id: 'Mechanical',
+avgCGPA: 7.35
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$city",
+studentCount:{$sum:1}
+}
+},
+{
+$sort:{studentCount:-1}
+}
+])
+{
+_id: 'Bangalore',
+studentCount: 3
+}
+{
+_id: 'Hyderabad',
+studentCount: 3
+}
+{
+_id: 'Chennai',
+studentCount: 2
+}
+{
+_id: 'Pune',
+studentCount: 2
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$department",
+maxCGPA:{$max:"$cgpa"}
+}
+},
+{
+$sort:{maxCGPA:-1}
+}
+])
+{
+_id: 'CSE',
+maxCGPA: 9.1
+}
+{
+_id: 'ECE',
+maxCGPA: 9
+}
+{
+_id: 'EEE',
+maxCGPA: 8.9
+}
+{
+_id: 'Civil',
+maxCGPA: 8
+}
+{
+_id: 'Mechanical',
+maxCGPA: 7.5
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$city",
+avgAge:{$avg:"$age"}
+}
+},
+{
+$sort:{avgAge:1}
+}
+])
+{
+_id: 'Bangalore',
+avgAge: 21.333333333333332
+}
+{
+_id: 'Chennai',
+avgAge: 21.5
+}
+{
+_id: 'Pune',
+avgAge: 21.5
+}
+{
+_id: 'Hyderabad',
+avgAge: 22
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$department",
+studentCount:{$sum:1}
+}
+},
+{
+$sort:{studentCount:-1}
+}
+])
+{
+_id: 'CSE',
+studentCount: 4
+}
+{
+_id: 'ECE',
+studentCount: 2
+}
+{
+_id: 'Mechanical',
+studentCount: 2
+}
+{
+_id: 'EEE',
+studentCount: 1
+}
+{
+_id: 'Civil',
+studentCount: 1
+}
+Atlas atlas-k91boi-shard-0 [primary] dmk_db
+
+
+
+
+use dmk_db
+switched to db dmk_db
+db.students.insertMany([
+{
+student_id:1,
+name:"Saran",
+department:"CSE",
+city:"Bangalore",
+cgpa:8.5,
+age:21,
+gender:"Male"
+},
+{
+student_id:2,
+name:"Priya",
+department:"ECE",
+city:"Hyderabad",
+cgpa:9.0,
+age:22,
+gender:"Female"
+},
+{
+student_id:3,
+name:"Rahul",
+department:"CSE",
+city:"Chennai",
+cgpa:7.8,
+age:21,
+gender:"Male"
+},
+{
+student_id:4,
+name:"Deepa",
+department:"EEE",
+city:"Bangalore",
+cgpa:8.9,
+age:22,
+gender:"Female"
+},
+{
+student_id:5,
+name:"Anjali",
+department:"ECE",
+city:"Pune",
+cgpa:8.2,
+age:20,
+gender:"Female"
+},
+{
+student_id:6,
+name:"Kumar",
+department:"Mechanical",
+city:"Hyderabad",
+cgpa:7.5,
+age:23,
+gender:"Male"
+},
+{
+student_id:7,
+name:"Sneha",
+department:"CSE",
+city:"Bangalore",
+cgpa:9.1,
+age:21,
+gender:"Female"
+},
+{
+student_id:8,
+name:"Varun",
+department:"Civil",
+city:"Chennai",
+cgpa:8.0,
+age:22,
+gender:"Male"
+},
+{
+student_id:9,
+name:"Charan",
+department:"Mechanical",
+city:"Pune",
+cgpa:7.2,
+age:23,
+gender:"Male"
+},
+{
+student_id:10,
+name:"Harsha",
+department:"CSE",
+city:"Hyderabad",
+cgpa:8.7,
+age:21,
+gender:"Male"
+}
+]);
+{
+acknowledged: true,
+insertedIds: {
+'0': ObjectId('6a33ca06f24be2ae9cad7b64'),
+'1': ObjectId('6a33ca06f24be2ae9cad7b65'),
+'2': ObjectId('6a33ca06f24be2ae9cad7b66'),
+'3': ObjectId('6a33ca06f24be2ae9cad7b67'),
+'4': ObjectId('6a33ca06f24be2ae9cad7b68'),
+'5': ObjectId('6a33ca06f24be2ae9cad7b69'),
+'6': ObjectId('6a33ca06f24be2ae9cad7b6a'),
+'7': ObjectId('6a33ca06f24be2ae9cad7b6b'),
+'8': ObjectId('6a33ca06f24be2ae9cad7b6c'),
+'9': ObjectId('6a33ca06f24be2ae9cad7b6d')
+}
+}
+db.students.aggregate([{$group:{_id:"student_id",totalstudents:{$sum:1}}}])
+{
+_id: 'student_id',
+totalstudents: 10
+}
+db.students.aggregate([{$group:{_id:"department",totalstudents:{$sum:1}}}])
+{
+_id: 'department',
+totalstudents: 10
+}
+db.students.aggregate([{$group:{_id:"$department",totalstudents:{$sum:1}}}])
+{
+_id: 'ECE',
+totalstudents: 2
+}
+{
+_id: 'EEE',
+totalstudents: 1
+}
+{
+_id: 'CSE',
+totalstudents: 4
+}
+{
+_id: 'Mechanical',
+totalstudents: 2
+}
+{
+_id: 'Civil',
+totalstudents: 1
+}
+db.students.aggregate([{$group:{_id:"$city",totalstudents:{$sum:1}}}])
+{
+_id: 'Hyderabad',
+totalstudents: 3
+}
+{
+_id: 'Bangalore',
+totalstudents: 3
+}
+{
+_id: 'Chennai',
+totalstudents: 2
+}
+{
+_id: 'Pune',
+totalstudents: 2
+}
+db.students.aggregate([{$group:{_id:"$male",totalstudents:{$sum:1}}}])
+{
+_id: null,
+totalstudents: 10
+}
+db.students.aggregate([{$group:{gender:"$male",totalstudents:{$sum:1}}}])
+MongoServerError[Location40234]: The field 'gender' must be an accumulator object
+db.students.aggregate([{$group:{_id:"$gender",totalstudents:{$sum:1},{$match:{gender:"male"}}}}])
+SyntaxError: Unexpected token (1:69)
+
+> 1 | db.students.aggregate([{$group:{_id:"$gender",totalstudents:{$sum:1},{$match:{gender:"male"}}}}])
+    |                                                                      ^
+db.students.aggregate([
+{$match:{gender:"Male"}},
+{$count:"male_students"}
+])
+{
+male_students: 6
+}
+db.students.aggregate([
+{$match:{gender:"feMale"}},
+{$count:"male_students"}
+])
+
+db.students.aggregate([
+{$match:{gender:"Female"}},
+{$count:"male_students"}
+])
+{
+male_students: 4
+}
+db.students.aggregate([
+{$match:{gender:"Female"}},
+{$count:"female_students"}
+])
+{
+female_students: 4
+}
+db.students.aggregate([{$group:{_id:"$null",averagecgpa:{$avg:"$cgpa"}}])
+SyntaxError: Unexpected token, expected "," (1:71)
+
+> 1 | db.students.aggregate([{$group:{_id:"$null",averagecgpa:{$avg:"$cgpa"}}])
+    |                                                                        ^
+db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:"$cgpa"}}])
+SyntaxError: Unexpected token, expected "," (1:76)
+
+> 1 | db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:"$cgpa"}}])
+    |                                                                             ^
+db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:$cgpa}}])
+SyntaxError: Unexpected token, expected "," (1:74)
+
+> 1 | db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:$cgpa}}])
+    |                                                                           ^
+db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:"$cgpa"}}}])
+{
+_id: 'student_id',
+averagecgpa: 8.290000000000001
+}
+db.students.aggregate([{$group:{_id:"$department",averagecgpa:{$avg:"$cgpa"}}}])
+{
+_id: 'CSE',
+averagecgpa: 8.524999999999999
+}
+{
+_id: 'EEE',
+averagecgpa: 8.9
+}
+{
+_id: 'Mechanical',
+averagecgpa: 7.35
+}
+{
+_id: 'ECE',
+averagecgpa: 8.6
+}
+{
+_id: 'Civil',
+averagecgpa: 8
+}
+db.students.aggregate([{$group:{_id:"$department",averageage:{$avg:"$age"}}}])
+{
+_id: 'ECE',
+averageage: 21
+}
+{
+_id: 'EEE',
+averageage: 22
+}
+{
+_id: 'CSE',
+averageage: 21
+}
+{
+_id: 'Mechanical',
+averageage: 23
+}
+{
+_id: 'Civil',
+averageage: 22
+}
+db.students.aggregate([{$group:{_id:"$department",averageage:{$avg:"$city"}}}])
+{
+_id: 'EEE',
+averageage: null
+}
+{
+_id: 'ECE',
+averageage: null
+}
+{
+_id: 'Mechanical',
+averageage: null
+}
+{
+_id: 'CSE',
+averageage: null
+}
+{
+_id: 'Civil',
+averageage: null
+}
+db.students.aggregate([{$group:{_id:"$city",averagecgpa:{$avg:"$cgpa"}}}])
+{
+_id: 'Pune',
+averagecgpa: 7.699999999999999
+}
+{
+_id: 'Bangalore',
+averagecgpa: 8.833333333333334
+}
+{
+_id: 'Hyderabad',
+averagecgpa: 8.4
+}
+{
+_id: 'Chennai',
+averagecgpa: 7.9
+}
+db.students.aggregate([{$group:{_id:"$student_id",averageage:{$avg:"$age"}}}])
+{
+_id: 1,
+averageage: 21
+}
+{
+_id: 6,
+averageage: 23
+}
+{
+_id: 8,
+averageage: 22
+}
+{
+_id: 9,
+averageage: 23
+}
+{
+_id: 2,
+averageage: 22
+}
+{
+_id: 7,
+averageage: 21
+}
+{
+_id: 10,
+averageage: 21
+}
+{
+_id: 3,
+averageage: 21
+}
+{
+_id: 4,
+averageage: 22
+}
+{
+_id: 5,
+averageage: 20
+}
+db.students.aggregate([{$group:{_id:"$null",sumcgpa:{$sum:"$cgpa"}}}])
+{
+_id: null,
+sumcgpa: 82.9
+}
+db.students.aggregate([{$group:{_id:"$null",sumcgpa:{$sum:"$age"}}}])
+{
+_id: null,
+sumcgpa: 216
+}
+db.students.aggregate([{$group:{_id:"$department",sumcgpa:{$sum:"$cgpa"}}}])
+{
+_id: 'CSE',
+sumcgpa: 34.099999999999994
+}
+{
+_id: 'EEE',
+sumcgpa: 8.9
+}
+{
+_id: 'Mechanical',
+sumcgpa: 14.7
+}
+{
+_id: 'ECE',
+sumcgpa: 17.2
+}
+{
+_id: 'Civil',
+sumcgpa: 8
+}
+db.students.aggregate([{$group:{_id:"$city",sumcgpa:{$sum:"$age"}}}])
+{
+_id: 'Chennai',
+sumcgpa: 43
+}
+{
+_id: 'Hyderabad',
+sumcgpa: 66
+}
+{
+_id: 'Pune',
+sumcgpa: 43
+}
+{
+_id: 'Bangalore',
+sumcgpa: 64
+}
+db.students.aggregate([
+  {
+    $match: { department: "CSE" }
+  },
+  {
+    $group: {
+      _id: null,
+      totalCGPA: { $sum: "$cgpa" }
+    }
+  }
+])
+{
+_id: null,
+totalCGPA: 34.099999999999994
+}
+db.students.aggregate([{$group:{_id:"$null",maxcgpa:{$max:"$cgpa"}}}])
+{
+_id: null,
+maxcgpa: 9.1
+}
+db.students.aggregate([{$group:{_id:"$null",maxage:{$max:"$age"}}}])
+{
+_id: null,
+maxage: 23
+}
+db.students.aggregate([{$group:{_id:"$department",maxcgpa:{$max:"$cgpa"}}}])
+{
+_id: 'ECE',
+maxcgpa: 9
+}
+{
+_id: 'EEE',
+maxcgpa: 8.9
+}
+{
+_id: 'CSE',
+maxcgpa: 9.1
+}
+
+{
+_id: 'Mechanical',
+maxcgpa: 7.5
+}
+
+{
+_id: 'Civil',
+maxcgpa: 8
+}
+
+db.students.aggregate([{$group:{_id:"$city",maxage:{$max:"$age"}}}])
+{
+_id: 'Pune',
+maxage: 23
+}
+{
+_id: 'Bangalore',
+maxage: 22
+}
+{
+_id: 'Hyderabad',
+maxage: 23
+}
+{
+_id: 'Chennai',
+maxage: 22
+}
+db.students.aggregate([
+  {
+    $group: {
+      _id: "$department",
+      avgCGPA: { $avg: "$cgpa" }
+    }
+  },
+  {
+    $sort: { avgCGPA: -1 }
+  },
+  {
+    $limit: 1
+  }
+])
+{
+_id: 'EEE',
+avgCGPA: 8.9
+}
+db.students.aggregate([{$group:{_id:"$null",mincgpa:{$min:"$cgpa"}}}])
+{
+_id: null,
+mincgpa: 7.2
+}
+db.students.aggregate([{$group:{_id:"$null",minage:{$min:"$age"}}}])
+{
+_id: null,
+minage: 20
+}
+db.students.aggregate([{$group:{_id:"$department",mincgpa:{$min:"$cgpa"}}}])
+{
+_id: 'Mechanical',
+mincgpa: 7.2
+}
+{
+_id: 'ECE',
+mincgpa: 8.2
+}
+{
+_id: 'Civil',
+mincgpa: 8
+}
+{
+_id: 'EEE',
+mincgpa: 8.9
+}
+{
+_id: 'CSE',
+mincgpa: 7.8
+}
+db.students.aggregate([{$group:{_id:"$city",minage:{$min:"$age"}}}])
+{
+_id: 'Hyderabad',
+minage: 21
+}
+{
+_id: 'Chennai',
+minage: 21
+}
+{
+_id: 'Pune',
+minage: 20
+}
+{
+_id: 'Bangalore',
+minage: 21
+}
+db.students.aggregate([
+  {
+    $group: {
+      _id: "$city",
+      avgCGPA: { $avg: "$cgpa" }
+    }
+  },
+  {
+    $sort: { avgCGPA: 1 }
+  },
+  {
+    $limit: 1
+  }
+])
+{
+_id: 'Pune',
+avgCGPA: 7.699999999999999
+}
+db.students.aggregate([{$group:{_id:"$department",minage:{$sum:1}}])
+SyntaxError: Unexpected token, expected "," (1:66)
+
+> 1 | db.students.aggregate([{$group:{_id:"$department",minage:{$sum:1}}])
+    |                                                                   ^
+db.students.aggregate([{$group:{_id:"$department",totalstudents:{$sum:1}}])
+SyntaxError: Unexpected token, expected "," (1:73)
+
+> 1 | db.students.aggregate([{$group:{_id:"$department",totalstudents:{$sum:1}}])
+    |                                                                          ^
+db.students.aggregate([
+  {
+    $group: {
+      _id: "$department",
+      studentCount: { $sum: 1 }
+    }
+  }
+])
+{
+_id: 'EEE',
+studentCount: 1
+}
+{
+_id: 'ECE',
+studentCount: 2
+}
+{
+_id: 'Mechanical',
+studentCount: 2
+}
+{
+_id: 'CSE',
+studentCount: 4
+}
+{
+_id: 'Civil',
+studentCount: 1
+}
+db.students.aggregate([
+  {
+    $group: {
+      _id: "$city",
+      studentCount: { $sum: 1 }
+    }
+  }
+])
+{
+_id: 'Chennai',
+studentCount: 2
+}
+{
+_id: 'Hyderabad',
+studentCount: 3
+}
+{
+_id: 'Pune',
+studentCount: 2
+}
+{
+_id: 'Bangalore',
+studentCount: 3
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$gender",
+count:{$sum:1}
+}
+}
+])
+{
+_id: 'Female',
+count: 4
+}
+{
+_id: 'Male',
+count: 6
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$department",
+avgCGPA:{$avg:"$cgpa"}
+}
+}
+])
+{
+_id: 'Mechanical',
+avgCGPA: 7.35
+}
+{
+_id: 'ECE',
+avgCGPA: 8.6
+}
+{
+_id: 'Civil',
+avgCGPA: 8
+}
+{
+_id: 'EEE',
+avgCGPA: 8.9
+}
+{
+_id: 'CSE',
+avgCGPA: 8.524999999999999
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$city",
+avgAge:{$avg:"$age"}
+}
+}
+])
+{
+_id: 'Chennai',
+avgAge: 21.5
+}
+{
+_id: 'Bangalore',
+avgAge: 21.333333333333332
+}
+{
+_id: 'Pune',
+avgAge: 21.5
+}
+{
+_id: 'Hyderabad',
+avgAge: 22
+}
+db.students.aggregate([
+{
+$match:{cgpa:{$gt:8}}
+},
+{
+$count:"studentCount"
+}
+])
+{
+studentCount: 6
+}
+db.students.aggregate([
+{
+$match:{department:"CSE"}
+},
+{
+$group:{
+_id:null,
+avgCGPA:{$avg:"$cgpa"}
+}
+}
+])
+{
+_id: null,
+avgCGPA: 8.524999999999999
+}
+db.students.aggregate([
+{
+$match:{gender:"Female"}
+},
+{
+$count:"femaleStudents"
+}
+])
+{
+femaleStudents: 4
+}
+db.students.aggregate([
+{
+$match:{gender:"Male"}
+},
+{
+$group:{
+_id:null,
+maxCGPA:{$max:"$cgpa"}
+}
+}
+])
+{
+_id: null,
+maxCGPA: 8.7
+}
+
+db.students.aggregate([
+{
+$match:{gender:"Female"}
+},
+{
+$group:{
+_id:null,
+minCGPA:{$min:"$cgpa"}
+}
+}
+])
+{
+_id: null,
+minCGPA: 8.2
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$department",
+avgCGPA:{$avg:"$cgpa"}
+}
+},
+{
+$sort:{avgCGPA:-1}
+}
+])
+{
+_id: 'EEE',
+avgCGPA: 8.9
+}
+{
+_id: 'ECE',
+avgCGPA: 8.6
+}
+{
+_id: 'CSE',
+avgCGPA: 8.524999999999999
+}
+{
+_id: 'Civil',
+avgCGPA: 8
+}
+{
+_id: 'Mechanical',
+avgCGPA: 7.35
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$city",
+studentCount:{$sum:1}
+}
+},
+{
+$sort:{studentCount:-1}
+}
+])
+{
+_id: 'Bangalore',
+studentCount: 3
+}
+{
+_id: 'Hyderabad',
+studentCount: 3
+}
+{
+_id: 'Chennai',
+studentCount: 2
+}
+{
+_id: 'Pune',
+studentCount: 2
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$department",
+maxCGPA:{$max:"$cgpa"}
+}
+},
+{
+$sort:{maxCGPA:-1}
+}
+])
+{
+_id: 'CSE',
+maxCGPA: 9.1
+}
+{
+_id: 'ECE',
+maxCGPA: 9
+}
+{
+_id: 'EEE',
+maxCGPA: 8.9
+}
+{
+_id: 'Civil',
+maxCGPA: 8
+}
+{
+_id: 'Mechanical',
+maxCGPA: 7.5
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$city",
+avgAge:{$avg:"$age"}
+}
+},
+{
+$sort:{avgAge:1}
+}
+])
+{
+_id: 'Bangalore',
+avgAge: 21.333333333333332
+}
+{
+_id: 'Chennai',
+avgAge: 21.5
+}
+{
+_id: 'Pune',
+avgAge: 21.5
+}
+{
+_id: 'Hyderabad',
+avgAge: 22
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$department",
+studentCount:{$sum:1}
+}
+},
+{
+$sort:{studentCount:-1}
+}
+])
+{
+_id: 'CSE',
+studentCount: 4
+}
+{
+_id: 'ECE',
+studentCount: 2
+}
+{
+_id: 'Mechanical',
+studentCount: 2
+}
+{
+_id: 'EEE',
+studentCount: 1
+}
+{
+_id: 'Civil',
+studentCount: 1
+}
+Atlas atlas-k91boi-shard-0 [primary] dmk_db
+
+
+
+
+use dmk_db
+switched to db dmk_db
+db.students.insertMany([
+{
+student_id:1,
+name:"Saran",
+department:"CSE",
+city:"Bangalore",
+cgpa:8.5,
+age:21,
+gender:"Male"
+},
+{
+student_id:2,
+name:"Priya",
+department:"ECE",
+city:"Hyderabad",
+cgpa:9.0,
+age:22,
+gender:"Female"
+},
+{
+student_id:3,
+name:"Rahul",
+department:"CSE",
+city:"Chennai",
+cgpa:7.8,
+age:21,
+gender:"Male"
+},
+{
+student_id:4,
+name:"Deepa",
+department:"EEE",
+city:"Bangalore",
+cgpa:8.9,
+age:22,
+gender:"Female"
+},
+{
+student_id:5,
+name:"Anjali",
+department:"ECE",
+city:"Pune",
+cgpa:8.2,
+age:20,
+gender:"Female"
+},
+{
+student_id:6,
+name:"Kumar",
+department:"Mechanical",
+city:"Hyderabad",
+cgpa:7.5,
+age:23,
+gender:"Male"
+},
+{
+student_id:7,
+name:"Sneha",
+department:"CSE",
+city:"Bangalore",
+cgpa:9.1,
+age:21,
+gender:"Female"
+},
+{
+student_id:8,
+name:"Varun",
+department:"Civil",
+city:"Chennai",
+cgpa:8.0,
+age:22,
+gender:"Male"
+},
+{
+student_id:9,
+name:"Charan",
+department:"Mechanical",
+city:"Pune",
+cgpa:7.2,
+age:23,
+gender:"Male"
+},
+{
+student_id:10,
+name:"Harsha",
+department:"CSE",
+city:"Hyderabad",
+cgpa:8.7,
+age:21,
+gender:"Male"
+}
+]);
+{
+acknowledged: true,
+insertedIds: {
+'0': ObjectId('6a33ca06f24be2ae9cad7b64'),
+'1': ObjectId('6a33ca06f24be2ae9cad7b65'),
+'2': ObjectId('6a33ca06f24be2ae9cad7b66'),
+'3': ObjectId('6a33ca06f24be2ae9cad7b67'),
+'4': ObjectId('6a33ca06f24be2ae9cad7b68'),
+'5': ObjectId('6a33ca06f24be2ae9cad7b69'),
+'6': ObjectId('6a33ca06f24be2ae9cad7b6a'),
+'7': ObjectId('6a33ca06f24be2ae9cad7b6b'),
+'8': ObjectId('6a33ca06f24be2ae9cad7b6c'),
+'9': ObjectId('6a33ca06f24be2ae9cad7b6d')
+}
+}
+db.students.aggregate([{$group:{_id:"student_id",totalstudents:{$sum:1}}}])
+{
+_id: 'student_id',
+totalstudents: 10
+}
+db.students.aggregate([{$group:{_id:"department",totalstudents:{$sum:1}}}])
+{
+_id: 'department',
+totalstudents: 10
+}
+db.students.aggregate([{$group:{_id:"$department",totalstudents:{$sum:1}}}])
+{
+_id: 'ECE',
+totalstudents: 2
+}
+{
+_id: 'EEE',
+totalstudents: 1
+}
+{
+_id: 'CSE',
+totalstudents: 4
+}
+{
+_id: 'Mechanical',
+totalstudents: 2
+}
+{
+_id: 'Civil',
+totalstudents: 1
+}
+db.students.aggregate([{$group:{_id:"$city",totalstudents:{$sum:1}}}])
+{
+_id: 'Hyderabad',
+totalstudents: 3
+}
+{
+_id: 'Bangalore',
+totalstudents: 3
+}
+{
+_id: 'Chennai',
+totalstudents: 2
+}
+{
+_id: 'Pune',
+totalstudents: 2
+}
+db.students.aggregate([{$group:{_id:"$male",totalstudents:{$sum:1}}}])
+{
+_id: null,
+totalstudents: 10
+}
+db.students.aggregate([{$group:{gender:"$male",totalstudents:{$sum:1}}}])
+MongoServerError[Location40234]: The field 'gender' must be an accumulator object
+db.students.aggregate([{$group:{_id:"$gender",totalstudents:{$sum:1},{$match:{gender:"male"}}}}])
+SyntaxError: Unexpected token (1:69)
+
+> 1 | db.students.aggregate([{$group:{_id:"$gender",totalstudents:{$sum:1},{$match:{gender:"male"}}}}])
+    |                                                                      ^
+db.students.aggregate([
+{$match:{gender:"Male"}},
+{$count:"male_students"}
+])
+{
+male_students: 6
+}
+db.students.aggregate([
+{$match:{gender:"feMale"}},
+{$count:"male_students"}
+])
+
+db.students.aggregate([
+{$match:{gender:"Female"}},
+{$count:"male_students"}
+])
+{
+male_students: 4
+}
+db.students.aggregate([
+{$match:{gender:"Female"}},
+{$count:"female_students"}
+])
+{
+female_students: 4
+}
+db.students.aggregate([{$group:{_id:"$null",averagecgpa:{$avg:"$cgpa"}}])
+SyntaxError: Unexpected token, expected "," (1:71)
+
+> 1 | db.students.aggregate([{$group:{_id:"$null",averagecgpa:{$avg:"$cgpa"}}])
+    |                                                                        ^
+db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:"$cgpa"}}])
+SyntaxError: Unexpected token, expected "," (1:76)
+
+> 1 | db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:"$cgpa"}}])
+    |                                                                             ^
+db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:$cgpa}}])
+SyntaxError: Unexpected token, expected "," (1:74)
+
+> 1 | db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:$cgpa}}])
+    |                                                                           ^
+db.students.aggregate([{$group:{_id:"student_id",averagecgpa:{$avg:"$cgpa"}}}])
+{
+_id: 'student_id',
+averagecgpa: 8.290000000000001
+}
+db.students.aggregate([{$group:{_id:"$department",averagecgpa:{$avg:"$cgpa"}}}])
+{
+_id: 'CSE',
+averagecgpa: 8.524999999999999
+}
+{
+_id: 'EEE',
+averagecgpa: 8.9
+}
+{
+_id: 'Mechanical',
+averagecgpa: 7.35
+}
+{
+_id: 'ECE',
+averagecgpa: 8.6
+}
+{
+_id: 'Civil',
+averagecgpa: 8
+}
+db.students.aggregate([{$group:{_id:"$department",averageage:{$avg:"$age"}}}])
+{
+_id: 'ECE',
+averageage: 21
+}
+{
+_id: 'EEE',
+averageage: 22
+}
+{
+_id: 'CSE',
+averageage: 21
+}
+{
+_id: 'Mechanical',
+averageage: 23
+}
+{
+_id: 'Civil',
+averageage: 22
+}
+db.students.aggregate([{$group:{_id:"$department",averageage:{$avg:"$city"}}}])
+{
+_id: 'EEE',
+averageage: null
+}
+{
+_id: 'ECE',
+averageage: null
+}
+{
+_id: 'Mechanical',
+averageage: null
+}
+{
+_id: 'CSE',
+averageage: null
+}
+{
+_id: 'Civil',
+averageage: null
+}
+db.students.aggregate([{$group:{_id:"$city",averagecgpa:{$avg:"$cgpa"}}}])
+{
+_id: 'Pune',
+averagecgpa: 7.699999999999999
+}
+{
+_id: 'Bangalore',
+averagecgpa: 8.833333333333334
+}
+{
+_id: 'Hyderabad',
+averagecgpa: 8.4
+}
+{
+_id: 'Chennai',
+averagecgpa: 7.9
+}
+db.students.aggregate([{$group:{_id:"$student_id",averageage:{$avg:"$age"}}}])
+{
+_id: 1,
+averageage: 21
+}
+{
+_id: 6,
+averageage: 23
+}
+{
+_id: 8,
+averageage: 22
+}
+{
+_id: 9,
+averageage: 23
+}
+{
+_id: 2,
+averageage: 22
+}
+{
+_id: 7,
+averageage: 21
+}
+{
+_id: 10,
+averageage: 21
+}
+{
+_id: 3,
+averageage: 21
+}
+{
+_id: 4,
+averageage: 22
+}
+{
+_id: 5,
+averageage: 20
+}
+db.students.aggregate([{$group:{_id:"$null",sumcgpa:{$sum:"$cgpa"}}}])
+{
+_id: null,
+sumcgpa: 82.9
+}
+db.students.aggregate([{$group:{_id:"$null",sumcgpa:{$sum:"$age"}}}])
+{
+_id: null,
+sumcgpa: 216
+}
+db.students.aggregate([{$group:{_id:"$department",sumcgpa:{$sum:"$cgpa"}}}])
+{
+_id: 'CSE',
+sumcgpa: 34.099999999999994
+}
+{
+_id: 'EEE',
+sumcgpa: 8.9
+}
+{
+_id: 'Mechanical',
+sumcgpa: 14.7
+}
+{
+_id: 'ECE',
+sumcgpa: 17.2
+}
+{
+_id: 'Civil',
+sumcgpa: 8
+}
+db.students.aggregate([{$group:{_id:"$city",sumcgpa:{$sum:"$age"}}}])
+{
+_id: 'Chennai',
+sumcgpa: 43
+}
+{
+_id: 'Hyderabad',
+sumcgpa: 66
+}
+{
+_id: 'Pune',
+sumcgpa: 43
+}
+{
+_id: 'Bangalore',
+sumcgpa: 64
+}
+db.students.aggregate([
+  {
+    $match: { department: "CSE" }
+  },
+  {
+    $group: {
+      _id: null,
+      totalCGPA: { $sum: "$cgpa" }
+    }
+  }
+])
+{
+_id: null,
+totalCGPA: 34.099999999999994
+}
+db.students.aggregate([{$group:{_id:"$null",maxcgpa:{$max:"$cgpa"}}}])
+{
+_id: null,
+maxcgpa: 9.1
+}
+db.students.aggregate([{$group:{_id:"$null",maxage:{$max:"$age"}}}])
+{
+_id: null,
+maxage: 23
+}
+db.students.aggregate([{$group:{_id:"$department",maxcgpa:{$max:"$cgpa"}}}])
+{
+_id: 'ECE',
+maxcgpa: 9
+}
+{
+_id: 'EEE',
+maxcgpa: 8.9
+}
+{
+_id: 'CSE',
+maxcgpa: 9.1
+}
+
+{
+_id: 'Mechanical',
+maxcgpa: 7.5
+}
+
+{
+_id: 'Civil',
+maxcgpa: 8
+}
+
+db.students.aggregate([{$group:{_id:"$city",maxage:{$max:"$age"}}}])
+{
+_id: 'Pune',
+maxage: 23
+}
+{
+_id: 'Bangalore',
+maxage: 22
+}
+{
+_id: 'Hyderabad',
+maxage: 23
+}
+{
+_id: 'Chennai',
+maxage: 22
+}
+db.students.aggregate([
+  {
+    $group: {
+      _id: "$department",
+      avgCGPA: { $avg: "$cgpa" }
+    }
+  },
+  {
+    $sort: { avgCGPA: -1 }
+  },
+  {
+    $limit: 1
+  }
+])
+{
+_id: 'EEE',
+avgCGPA: 8.9
+}
+db.students.aggregate([{$group:{_id:"$null",mincgpa:{$min:"$cgpa"}}}])
+{
+_id: null,
+mincgpa: 7.2
+}
+db.students.aggregate([{$group:{_id:"$null",minage:{$min:"$age"}}}])
+{
+_id: null,
+minage: 20
+}
+db.students.aggregate([{$group:{_id:"$department",mincgpa:{$min:"$cgpa"}}}])
+{
+_id: 'Mechanical',
+mincgpa: 7.2
+}
+{
+_id: 'ECE',
+mincgpa: 8.2
+}
+{
+_id: 'Civil',
+mincgpa: 8
+}
+{
+_id: 'EEE',
+mincgpa: 8.9
+}
+{
+_id: 'CSE',
+mincgpa: 7.8
+}
+db.students.aggregate([{$group:{_id:"$city",minage:{$min:"$age"}}}])
+{
+_id: 'Hyderabad',
+minage: 21
+}
+{
+_id: 'Chennai',
+minage: 21
+}
+{
+_id: 'Pune',
+minage: 20
+}
+{
+_id: 'Bangalore',
+minage: 21
+}
+db.students.aggregate([
+  {
+    $group: {
+      _id: "$city",
+      avgCGPA: { $avg: "$cgpa" }
+    }
+  },
+  {
+    $sort: { avgCGPA: 1 }
+  },
+  {
+    $limit: 1
+  }
+])
+{
+_id: 'Pune',
+avgCGPA: 7.699999999999999
+}
+db.students.aggregate([{$group:{_id:"$department",minage:{$sum:1}}])
+SyntaxError: Unexpected token, expected "," (1:66)
+
+> 1 | db.students.aggregate([{$group:{_id:"$department",minage:{$sum:1}}])
+    |                                                                   ^
+db.students.aggregate([{$group:{_id:"$department",totalstudents:{$sum:1}}])
+SyntaxError: Unexpected token, expected "," (1:73)
+
+> 1 | db.students.aggregate([{$group:{_id:"$department",totalstudents:{$sum:1}}])
+    |                                                                          ^
+db.students.aggregate([
+  {
+    $group: {
+      _id: "$department",
+      studentCount: { $sum: 1 }
+    }
+  }
+])
+{
+_id: 'EEE',
+studentCount: 1
+}
+{
+_id: 'ECE',
+studentCount: 2
+}
+{
+_id: 'Mechanical',
+studentCount: 2
+}
+{
+_id: 'CSE',
+studentCount: 4
+}
+{
+_id: 'Civil',
+studentCount: 1
+}
+db.students.aggregate([
+  {
+    $group: {
+      _id: "$city",
+      studentCount: { $sum: 1 }
+    }
+  }
+])
+{
+_id: 'Chennai',
+studentCount: 2
+}
+{
+_id: 'Hyderabad',
+studentCount: 3
+}
+{
+_id: 'Pune',
+studentCount: 2
+}
+{
+_id: 'Bangalore',
+studentCount: 3
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$gender",
+count:{$sum:1}
+}
+}
+])
+{
+_id: 'Female',
+count: 4
+}
+{
+_id: 'Male',
+count: 6
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$department",
+avgCGPA:{$avg:"$cgpa"}
+}
+}
+])
+{
+_id: 'Mechanical',
+avgCGPA: 7.35
+}
+{
+_id: 'ECE',
+avgCGPA: 8.6
+}
+{
+_id: 'Civil',
+avgCGPA: 8
+}
+{
+_id: 'EEE',
+avgCGPA: 8.9
+}
+{
+_id: 'CSE',
+avgCGPA: 8.524999999999999
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$city",
+avgAge:{$avg:"$age"}
+}
+}
+])
+{
+_id: 'Chennai',
+avgAge: 21.5
+}
+{
+_id: 'Bangalore',
+avgAge: 21.333333333333332
+}
+{
+_id: 'Pune',
+avgAge: 21.5
+}
+{
+_id: 'Hyderabad',
+avgAge: 22
+}
+db.students.aggregate([
+{
+$match:{cgpa:{$gt:8}}
+},
+{
+$count:"studentCount"
+}
+])
+{
+studentCount: 6
+}
+db.students.aggregate([
+{
+$match:{department:"CSE"}
+},
+{
+$group:{
+_id:null,
+avgCGPA:{$avg:"$cgpa"}
+}
+}
+])
+{
+_id: null,
+avgCGPA: 8.524999999999999
+}
+db.students.aggregate([
+{
+$match:{gender:"Female"}
+},
+{
+$count:"femaleStudents"
+}
+])
+{
+femaleStudents: 4
+}
+db.students.aggregate([
+{
+$match:{gender:"Male"}
+},
+{
+$group:{
+_id:null,
+maxCGPA:{$max:"$cgpa"}
+}
+}
+])
+{
+_id: null,
+maxCGPA: 8.7
+}
+
+db.students.aggregate([
+{
+$match:{gender:"Female"}
+},
+{
+$group:{
+_id:null,
+minCGPA:{$min:"$cgpa"}
+}
+}
+])
+{
+_id: null,
+minCGPA: 8.2
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$department",
+avgCGPA:{$avg:"$cgpa"}
+}
+},
+{
+$sort:{avgCGPA:-1}
+}
+])
+{
+_id: 'EEE',
+avgCGPA: 8.9
+}
+{
+_id: 'ECE',
+avgCGPA: 8.6
+}
+{
+_id: 'CSE',
+avgCGPA: 8.524999999999999
+}
+{
+_id: 'Civil',
+avgCGPA: 8
+}
+{
+_id: 'Mechanical',
+avgCGPA: 7.35
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$city",
+studentCount:{$sum:1}
+}
+},
+{
+$sort:{studentCount:-1}
+}
+])
+{
+_id: 'Bangalore',
+studentCount: 3
+}
+{
+_id: 'Hyderabad',
+studentCount: 3
+}
+{
+_id: 'Chennai',
+studentCount: 2
+}
+{
+_id: 'Pune',
+studentCount: 2
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$department",
+maxCGPA:{$max:"$cgpa"}
+}
+},
+{
+$sort:{maxCGPA:-1}
+}
+])
+{
+_id: 'CSE',
+maxCGPA: 9.1
+}
+{
+_id: 'ECE',
+maxCGPA: 9
+}
+{
+_id: 'EEE',
+maxCGPA: 8.9
+}
+{
+_id: 'Civil',
+maxCGPA: 8
+}
+{
+_id: 'Mechanical',
+maxCGPA: 7.5
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$city",
+avgAge:{$avg:"$age"}
+}
+},
+{
+$sort:{avgAge:1}
+}
+])
+{
+_id: 'Bangalore',
+avgAge: 21.333333333333332
+}
+{
+_id: 'Chennai',
+avgAge: 21.5
+}
+{
+_id: 'Pune',
+avgAge: 21.5
+}
+{
+_id: 'Hyderabad',
+avgAge: 22
+}
+db.students.aggregate([
+{
+$group:{
+_id:"$department",
+studentCount:{$sum:1}
+}
+},
+{
+$sort:{studentCount:-1}
+}
+])
+{
+_id: 'CSE',
+studentCount: 4
+}
+{
+_id: 'ECE',
+studentCount: 2
+}
+{
+_id: 'Mechanical',
+studentCount: 2
+}
+{
+_id: 'EEE',
+studentCount: 1
+
+_id: 'Civil',
+studentCount: 1
+}
+Atlas atlas-k91boi-shard-0 [primary] dmk_db
+
+
+
+
