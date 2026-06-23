@@ -1,0 +1,35 @@
+/* Task 11 */
+h1{
+    color: purple;
+}
+
+/* Task 12 */
+p{
+    font-size: 20px;
+    color: darkgreen;
+}
+
+/* Task 13 */
+nav{
+    background-color: black;
+    padding: 10px;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+/* Task 14 */
+input{
+    width: 300px;
+    padding: 10px;
+}
+
+/* Task 15 */
+.home{
+    background-color: lightblue;
+    text-align: center;
+    padding: 20px;
+}

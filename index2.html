@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Tasks 1-20</title>
+
+    <!-- Internal CSS : Tasks 6-10 and 16-20 -->
+    <style>
+        /* Task 6 */
+        .task6 h1{
+            color:red;
+        }
+        .task6 p{
+            color:blue;
+        }
+
+        /* Task 7 */
+        .task7 p{
+            font-size:18px;
+            font-family:Arial;
+        }
+
+        /* Task 8 */
+        .task8 h1{
+            color:red;
+        }
+        .task8 h2{
+            color:green;
+        }
+        .task8 p{
+            color:blue;
+        }
+
+        /* Task 9 */
+        .login{
+            background-color:lightgray;
+            padding:20px;
+            width:350px;
+        }
+
+        .login input{
+            width:300px;
+            padding:5px;
+        }
+
+        /* Task 10 */
+        .student{
+            border-collapse:collapse;
+        }
+
+        .student th,
+        .student td{
+            border:1px solid black;
+            background-color:lightblue;
+            padding:10px;
+        }
+
+        /* Task 16 */
+        h3{
+            color:red;
+        }
+
+        .para16{
+            color:blue;
+        }
+
+        /* Task 17 */
+        .highlight{
+            background-color:yellow;
+            color:black;
+        }
+
+        /* Task 18 */
+        .card{
+            border:1px solid black;
+            padding:20px;
+            margin:10px;
+            box-shadow:2px 2px 5px gray;
+        }
+
+        /* Task 19 */
+        #title{
+            color:darkblue;
+            text-align:center;
+        }
+
+        /* Task 20 */
+        #main-title{
+            text-align:center;
+        }
+
+        .content{
+            color:blue;
+        }
+
+        button{
+            background-color:green;
+            color:white;
+            padding:10px;
+        }
+    </style>
+
+    <!-- External CSS Tasks (11-15)
+         Create a separate style.css file and link it like below:
+         <link rel="stylesheet" href="style.css">
+    -->
+
+</head>
+<body>
+
+    <h1>PART 1 : INLINE CSS</h1>
+
+    <!-- Task 1 -->
+    <h2 style="color:blue;">Welcome to CSS</h2>
+
+    <!-- Task 2 -->
+    <p style="font-size:20px; color:green;">
+        This paragraph uses Inline CSS.
+    </p>
+
+    <!-- Task 3 -->
+    <button style="background-color:orange; color:white;">
+        Click Me
+    </button>
+
+    <!-- Task 4 -->
+    <h2 style="color:red;">Red Heading</h2>
+    <h2 style="color:green;">Green Heading</h2>
+    <h2 style="color:purple;">Purple Heading</h2>
+
+    <!-- Task 5 -->
+    <table border="1"
+           style="background-color:yellow; text-align:center;">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+        <tr>
+            <td>101</td>
+            <td>Krishna</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h1>PART 2 : INTERNAL CSS</h1>
+
+    <!-- Task 6 -->
+    <div class="task6">
+        <h1>Internal CSS Heading</h1>
+        <p>Internal CSS Paragraph</p>
+    </div>
+
+    <!-- Task 7 -->
+    <div class="task7">
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+        <p>Paragraph 3</p>
+    </div>
+
+    <!-- Task 8 -->
+    <div class="task8">
+        <h1>Main Heading</h1>
+        <h2>Sub Heading</h2>
+        <p>Sample Paragraph</p>
+    </div>
+
+    <!-- Task 9 -->
+    <div class="login">
+        <h2>Login Form</h2>
+        <input type="text" placeholder="Username"><br><br>
+        <input type="password" placeholder="Password">
+    </div>
+
+    <!-- Task 10 -->
+    <table class="student">
+        <tr>
+            <th>Name</th>
+            <th>Course</th>
+        </tr>
+        <tr>
+            <td>Krishna</td>
+            <td>CSE</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h1>PART 3 : EXTERNAL CSS</h1>
+
+    <!-- Task 11 -->
+    <h1>Welcome to External CSS</h1>
+
+    <!-- Task 12 -->
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+    <p>Paragraph 3</p>
+    <p>Paragraph 4</p>
+    <p>Paragraph 5</p>
+
+    <!-- Task 13 -->
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <!-- Task 14 -->
+    <h2>Registration Form</h2>
+    <form>
+        <input type="text" placeholder="Name"><br><br>
+        <input type="email" placeholder="Email"><br><br>
+        <input type="password" placeholder="Password">
+    </form>
+
+    <!-- Task 15 -->
+    <div>
+        <h2>MITS College</h2>
+        <p>Welcome to our College Website</p>
+    </div>
+
+    <hr>
+
+    <h1>PART 4 : SELECTORS</h1>
+
+    <!-- Task 16 -->
+    <h3>Heading</h3>
+    <p class="para16">Paragraph</p>
+
+    <!-- Task 17 -->
+    <p class="highlight">
+        This is highlighted text.
+    </p>
+
+    <!-- Task 18 -->
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+    <div class="card">Card 3</div>
+
+    <!-- Task 19 -->
+    <h1 id="title">ID Selector Example</h1>
+
+    <!-- Task 20 -->
+    <h1 id="main-title">Main Title</h1>
+    <p class="content">This paragraph uses class selector.</p>
+    <button>Submit</button>
+
+</body>
+</html>
