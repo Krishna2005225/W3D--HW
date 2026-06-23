@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Position</title>
+    <style>
+        p {
+            color: blue;
+            position: static;
+            border: 1px solid black;
+        }
+        .kk{
+            position:static
+        }
+        .box{
+            position:relative;
+            left:50px;
+            top:30px;
+        }
+        .box2{
+            height:100px;
+            width:100px;
+            border:1px solid black;
+            margin:10px;
+        }
+        .card {
+            width: 250px;
+            border: 1px solid black;
+            padding: 20px;
+            text-align: center;
+            margin: 50px auto;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: relative;
+            bottom: 20px; /* Moves image upward */
+        }
+        nav {
+            background-color: lightgray;
+            padding: 15px;
+        }
+
+        .logo {
+            position: relative;
+            left: 20px; /* Moves the logo 20px to the right */
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            width: 300px;
+            height: 200px;
+            border: 2px solid black;
+            position: relative;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+        }
+        .cart {
+            position: relative;
+            display: inline-block;
+            padding: 20px;
+            border: 2px solid black;
+            font-size: 20px;
+        }
+
+        .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 25px;
+            height: 25px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            font-size: 14px;
+        }
+        .id-card {
+            width: 350px;
+            border: 2px solid black;
+            padding: 20px;
+            position: relative;
+            margin: 50px auto;
+        }
+
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: 1px solid black;
+        }
+        .gallery {
+            position: relative;
+            display: inline-block;
+        }
+
+        .gallery img {
+            width: 300px;
+            height: 200px;
+        }
+
+        .label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            font-weight: bold;
+        }
+        .card {
+            width: 250px;
+            border: 1px solid black;
+            padding: 20px;
+            position: relative;
+            text-align: center;
+        }
+
+        .offer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+        }
+        .login-box {
+            width: 300px;
+            margin: 100px auto;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-container input {
+            width: 100%;
+            padding: 10px 35px 10px 10px;
+            box-sizing: border-box;
+        }
+
+        .icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .contact-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        body {
+            margin: 0;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: lightblue;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .content {
+            margin-top: 80px; /* Prevents content from hiding behind header */
+            padding: 20px;
+        }
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        body1{
+            margin:0;
+            font-family:Arial,sans-serif;
+        }
+
+        /* Task 17 - Sticky Navbar */
+        nav1{
+            background:blue;
+            color:white;
+            padding:15px;
+            position:sticky;
+            top:0;
+            z-index:1000;
+        }
+
+        /* Task 16 - Fixed Back to Top Button */
+        .top-btn{
+            position:fixed;
+            bottom:20px;
+            right:20px;
+            background:red;
+            color:white;
+            padding:10px 15px;
+            text-decoration:none;
+            border-radius:5px;
+        }
+
+        /* Task 18 - Sticky Section Titles */
+        .section{
+            height:300px;
+            border:1px solid black;
+            padding:20px;
+        }
+
+        .section h2{
+            position:sticky;
+            top:55px;
+            background:lightyellow;
+            padding:10px;
+            margin:0;
+        }
+
+        /* Task 19 - Sticky Table Header */
+        .table-container{
+            height:300px;
+            overflow-y:scroll;
+            margin:20px;
+            border:1px solid black;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th,td{
+            border:1px solid black;
+            padding:10px;
+            text-align:center;
+        }
+
+        th{
+            position:sticky;
+            top:0;
+            background:lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+    <p>Paragraph 3</p>
+    <header class="kk">
+    <h1 >positions</h1>
+    </header>
+    <main class="kk">
+        <p>this is main page</p>
+    </main>
+    <footer class="kk">copy@ rights</footer>
+    <div class="box">Relative Box</div>
+    <br><br>
+    <div class="box">box1</div><br><br>
+    <div class="box2">box2</div>
+     <div class="card">
+        <img src="im1.jpg" alt="Profile Image" class="profile-img">
+        <h2>John Doe</h2>
+        <p>Web Developer</p>
+    </div>
+    <nav>
+        <span class="logo">MyLogo</span>
+    </nav>
+    <div class="container">
+    <div class="box1"></div>
+    </div>
+    <div class="cart">
+        Cart
+        <span class="badge">5</span>
+    </div>
+    <div class="id-card">
+        <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+
+        <h2>Student ID Card</h2>
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>ID:</strong> 12345</p>
+        <p><strong>Department:</strong> CSE</p>
+    </div>
+    <div class="gallery">
+        <img src="im1.jpg" alt="Gallery Image">
+        <div class="label">New</div>
+    </div>
+     <div class="card">
+        <div class="offer">20% OFF</div>
+        <img src="im1.jpg" alt="Product" width="150">
+        <h3>Product Name</h3>
+        <p>₹1000</p>
+    </div>
+    <div class="login-box">
+        <h2>Login</h2>
+
+        <div class="password-container">
+            <input type="password" placeholder="Password">
+            <span class="icon">🔒</span>
+        </div>
+    </div>
+
+    <button class="contact-btn">Contact Us</button>
+    <div class="content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </div>
+    <h1>Welcome to My Website</h1>
+    <p>Scroll the page and the button will stay in the same position.</p>
+
+    <button class="whatsapp-btn">💬</button>
+    <nav>
+        Sticky Navigation Bar
+    </nav>
+
+    <!-- Task 18 -->
+    <div class="section">
+        <h2>Section 1</h2>
+        <p>Content for Section 1</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+
+    <div class="section">
+        <h2>Section 2</h2>
+        <p>Content for Section 2</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+
+    <div class="section">
+        <h2>Section 3</h2>
+        <p>Content for Section 3</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+
+    <!-- Task 19 -->
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Marks</th>
+            </tr>
+
+            <tr><td>1</td><td>John</td><td>90</td></tr>
+            <tr><td>2</td><td>David</td><td>85</td></tr>
+            <tr><td>3</td><td>Sam</td><td>88</td></tr>
+            <tr><td>4</td><td>Alex</td><td>92</td></tr>
+            <tr><td>5</td><td>Tom</td><td>80</td></tr>
+            <tr><td>6</td><td>Jerry</td><td>78</td></tr>
+            <tr><td>7</td><td>Mike</td><td>89</td></tr>
+            <tr><td>8</td><td>Anna</td><td>95</td></tr>
+            <tr><td>9</td><td>Sara</td><td>91</td></tr>
+            <tr><td>10</td><td>James</td><td>87</td></tr>
+            <tr><td>11</td><td>Ravi</td><td>84</td></tr>
+            <tr><td>12</td><td>Kiran</td><td>82</td></tr>
+            <tr><td>13</td><td>Priya</td><td>94</td></tr>
+            <tr><td>14</td><td>Neha</td><td>86</td></tr>
+            <tr><td>15</td><td>Rahul</td><td>90</td></tr>
+        </table>
+    </div>
+
+    <!-- Task 16 -->
+    <a href="#top" class="top-btn">Back to Top</a>
+
+</body>
+</html>
