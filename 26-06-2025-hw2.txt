@@ -1,0 +1,1197 @@
+TASK1:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Layout</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+        }
+
+        .main-wrapper {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            background: #34495e;
+            color: white;
+            padding: 20px;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        /* 3 Columns, 6 Boxes, 20px Gap */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .box {
+            background: white;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer {
+            background: #e9ecef;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">Dashboard</div>
+
+    <div class="main-wrapper">
+        <div class="sidebar">Navigation</div>
+
+        <div class="content-area">
+            <div class="grid-container">
+                <div class="box">Box 1</div>
+                <div class="box">Box 2</div>
+                <div class="box">Box 3</div>
+                <div class="box">Box 4</div>
+                <div class="box">Box 5</div>
+                <div class="box">Box 6</div>
+            </div>
+
+            <div class="footer">Footer</div>
+        </div>
+    </div>
+
+</body>
+</html>
+TASK2:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+        .header { background: #2c3e50; color: white; padding: 20px; }
+        .main-wrapper { display: flex; }
+        .sidebar { width: 200px; background: #34495e; color: white; padding: 20px; }
+        .content-area { flex: 1; padding: 20px; }
+
+        /* 2x2 Grid with Fixed Dimensions */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            width: 500px;
+            height: 300px;
+            gap: 15px;
+        }
+
+        .box {
+            background: white;
+            border: 1px solid #dee2e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Dashboard</div>
+    <div class="main-wrapper">
+        <div class="sidebar">Navigation</div>
+        <div class="content-area">
+            <div class="grid-container">
+                <div class="box">Box 1</div>
+                <div class="box">Box 2</div>
+                <div class="box">Box 3</div>
+                <div class="box">Box 4</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+TASK 3:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+        .header { background: #2c3e50; color: white; padding: 20px; }
+        .main-wrapper { display: flex; }
+        .sidebar { width: 200px; background: #34495e; color: white; padding: 20px; }
+        .content-area { flex: 1; padding: 20px; }
+
+        /* 4 Columns with Equal Row/Column Gap */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .box {
+            background: white;
+            border: 1px solid #dee2e6;
+            padding: 30px 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Dashboard</div>
+    <div class="main-wrapper">
+        <div class="sidebar">Navigation</div>
+        <div class="content-area">
+            <div class="grid-container">
+                <div class="box">Item 1</div>
+                <div class="box">Item 2</div>
+                <div class="box">Item 3</div>
+                <div class="box">Item 4</div>
+                <div class="box">Item 5</div>
+                <div class="box">Item 6</div>
+                <div class="box">Item 7</div>
+                <div class="box">Item 8</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+TASK4:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+        .header { background: #2c3e50; color: white; padding: 20px; }
+        .main-wrapper { display: flex; }
+        .sidebar { width: 200px; background: #34495e; color: white; padding: 20px; }
+        .content-area { flex: 1; padding: 20px; }
+
+        /* 3-Column Image Layout */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Dashboard</div>
+    <div class="main-wrapper">
+        <div class="sidebar">Navigation</div>
+        <div class="content-area">
+            <div class="grid-container">
+                <img class="gallery-img" src="https://picsum.photos" alt="Img 1">
+                <img class="gallery-img" src="https://picsum.photos" alt="Img 2">
+                <img class="gallery-img" src="https://picsum.photos" alt="Img 3">
+                <img class="gallery-img" src="https://picsum.photos" alt="Img 4">
+                <img class="gallery-img" src="https://picsum.photos" alt="Img 5">
+                <img class="gallery-img" src="https://picsum.photos" alt="Img 6">
+                <img class="gallery-img" src="https://picsum.photos" alt="Img 7">
+                <img class="gallery-img" src="https://picsum.photos" alt="Img 8">
+                <img class="gallery-img" src="https://picsum.photos" alt="Img 9">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+TASK5:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 6</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+        .header { background: #2c3e50; color: white; padding: 20px; }
+        .main-wrapper { display: flex; }
+        .sidebar { width: 200px; background: #34495e; color: white; padding: 20px; }
+        .content-area { flex: 1; padding: 20px; }
+
+        /* 4 Columns, 3 Rows Grid */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 15px;
+            min-height: 400px; /* Explicit height to visualize row tracks */
+        }
+
+        .box {
+            background: white;
+            border: 1px solid #dee2e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Dashboard</div>
+    <div class="main-wrapper">
+        <div class="sidebar">Navigation</div>
+        <div class="content-area">
+            <div class="grid-container">
+                <div class="box">1</div>
+                <div class="box">2</div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+                <div class="box">5</div>
+                <div class="box">6</div>
+                <div class="box">7</div>
+                <div class="box">8</div>
+                <div class="box">9</div>
+                <div class="box">10</div>
+                <div class="box">11</div>
+                <div class="box">12</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+TASK7:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 7</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+        .header { background: #2c3e50; color: white; padding: 20px; }
+        .main-wrapper { display: flex; }
+        .sidebar { width: 200px; background: #34495e; color: white; padding: 20px; }
+        .content-area { flex: 1; padding: 20px; }
+
+        /* Asymmetric Column Layout */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 150px 2fr 1fr;
+            gap: 20px;
+        }
+
+        .box {
+            background: white;
+            border: 1px solid #dee2e6;
+            padding: 25px;
+        }
+        
+        .box-fixed { background: #e8f4fd; } /* Highlight fixed-width column */
+    </style>
+</head>
+<body>
+    <div class="header">Dashboard</div>
+    <div class="main-wrapper">
+        <div class="sidebar">Navigation</div>
+        <div class="content-area">
+            <div class="grid-container">
+                <div class="box box-fixed">
+                    <h4>Fixed Width</h4>
+                    <p>150px column space.</p>
+                </div>
+                <div class="box">
+                    <h4>Larger Dynamic Track</h4>
+                    <p>Takes up 2 fractions (2fr) of the remaining area.</p>
+                </div>
+                <div class="box">
+                    <h4>Smaller Dynamic Track</h4>
+                    <p>Takes up 1 fraction (1fr) of the remaining area.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+TASK8:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 8</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+        .header { background: #2c3e50; color: white; padding: 20px; }
+        .main-wrapper { display: flex; }
+        .sidebar { width: 200px; background: #34495e; color: white; padding: 20px; }
+        .content-area { flex: 1; padding: 20px; }
+
+        /* Pricing Table Grid Layout */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 1fr; /* Forces all generated rows to keep an equal height */
+            gap: 25px;
+        }
+
+        .price-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .premium { border: 2px solid #3498db; position: relative; }
+        .badge { background: #3498db; color: white; padding: 3px 10px; font-size: 0.8rem; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
+        
+        .price { font-size: 2rem; font-weight: bold; margin: 15px 0; }
+        .features { list-style: none; padding: 0; margin: 20px 0; color: #555; }
+        .features li { margin-bottom: 10px; }
+        
+        .btn { background: #2c3e50; color: white; padding: 10px; border-radius: 4px; text-decoration: none; font-weight: bold; }
+        .premium .btn { background: #3498db; }
+    </style>
+</head>
+<body>
+    <div class="header">Dashboard</div>
+    <div class="main-wrapper">
+        <div class="sidebar">Navigation</div>
+        <div class="content-area">
+            <div class="grid-container">
+                <!-- Plan 1 -->
+                <div class="price-card">
+                    <div>
+                        <h3>Basic</h3>
+                        <div class="price">$9/mo</div>
+                        <ul class="features">
+                            <li>1 User Account</li>
+                            <li>10 GB Storage</li>
+                            <li>Email Support</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn">Get Started</a>
+                </div>
+                <!-- Plan 2 -->
+                <div class="price-card premium">
+                    <div>
+                        <span class="badge">Popular</span>
+                        <h3>Pro</h3>
+                        <div class="price">$29/mo</div>
+                        <ul class="features">
+                            <li>5 User Accounts</li>
+                            <li>100 GB Storage</li>
+                            <li>24/7 Priority Support</li>
+                            <li>Advanced Analytics Suite</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn">Upgrade Now</a>
+                </div>
+                <!-- Plan 3 -->
+                <div class="price-card">
+                    <div>
+                        <h3>Enterprise</h3>
+                        <div class="price">$99/mo</div>
+                        <ul class="features">
+                            <li>Unlimited Accounts</li>
+                            <li>1 TB Storage</li>
+                            <li>Dedicated Support Manager</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+TASK9:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 9</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+        .header { background: #2c3e50; color: white; padding: 20px; }
+        .main-wrapper { display: flex; }
+        .sidebar { width: 200px; background: #34495e; color: white; padding: 20px; }
+        .content-area { flex: 1; padding: 20px; }
+
+        /* Different Gaps for Rows and Columns */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            row-gap: 20px;
+            column-gap: 30px;
+        }
+
+        .box {
+            background: white;
+            border: 1px solid #dee2e6;
+            padding: 25px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Dashboard</div>
+    <div class="main-wrapper">
+        <div class="sidebar">Navigation</div>
+        <div class="content-area">
+            <div class="grid-container">
+                <div class="box">1</div><div class="box">2</div><div class="box">3</div><div class="box">4</div>
+                <div class="box">5</div><div class="box">6</div><div class="box">7</div><div class="box">8</div>
+                <div class="box">9</div><div class="box">10</div><div class="box">11</div><div class="box">12</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+TASK10:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 10</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+        .header { background: #2c3e50; color: white; padding: 20px; }
+        .main-wrapper { display: flex; }
+        .sidebar { width: 200px; background: #34495e; color: white; padding: 20px; }
+        .content-area { flex: 1; padding: 20px; }
+
+        /* Center Items both Axially and Vertically */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            width: 600px;
+            height: 400px;
+            background: #e9ecef;
+            border: 2px dashed #bdc3c7;
+            
+            /* Center alignment fields */
+            justify-items: center; 
+            align-items: center;
+        }
+
+        .box {
+            background: white;
+            border: 1px solid #dee2e6;
+            width: 120px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Dashboard</div>
+    <div class="main-wrapper">
+        <div class="sidebar">Navigation</div>
+        <div class="content-area">
+            <div class="grid-container">
+                <div class="box">Box 1</div>
+                <div class="box">Box 2</div>
+                <div class="box">Box 3</div>
+                <div class="box">Box 4</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+TASK11:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 11</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+        .header { background: #2c3e50; color: white; padding: 20px; }
+        .main-wrapper { display: flex; }
+        .sidebar { width: 200px; background: #34495e; color: white; padding: 20px; }
+        .content-area { flex: 1; padding: 20px; }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 150px;
+            gap: 20px;
+            background: #eee;
+            padding: 20px;
+
+            /* EXPERIMENT ZONE: Toggle properties below to compare */
+            justify-items: center; /* Options: start | center | end | stretch */
+            align-items: center;   /* Options: start | center | end | stretch */
+        }
+
+        .box {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            font-weight: bold;
+            text-align: center;
+            min-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Dashboard</div>
+    <div class="main-wrapper">
+        <div class="sidebar">Navigation</div>
+        <div class="content-area">
+            <h3>Alignment Workspace</h3>
+            <p>Modify <code>justify-items</code> and <code>align-items</code> values to alter layout positioning.</p>
+            
+            <div class="grid-container">
+                <div class="box">Start / Center / End</div>
+                <div class="box">Start / Center / End</div>
+                <div class="box">Start / Center / End</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+TASK12:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 12</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+        .header { background: #2c3e50; color: white; padding: 20px; }
+        .main-wrapper { display: flex; }
+        .sidebar { width: 200px; background: #34495e; color: white; padding: 20px; }
+        .content-area { flex: 1; padding: 20px; }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .box {
+            background: white;
+            border: 1px solid #dee2e6;
+            padding: 25px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* First item spans 2 columns */
+        .box-featured {
+            grid-column: span 2;
+            background: #e8f4fd;
+            border-color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Dashboard</div>
+    <div class="main-wrapper">
+        <div class="sidebar">Navigation</div>
+        <div class="content-area">
+            <div class="grid-container">
+                <div class="box box-featured">Item 1 (Spans 2 Columns)</div>
+                <div class="box">Item 2</div>
+                <div class="box">Item 3</div>
+                <div class="box">Item 4</div>
+                <div class="box">Item 5</div>
+                <div class="box">Item 6</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+TASK13:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 13</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+        
+        /* Entire page layout structured through CSS Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr 1fr 1fr;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+        }
+
+        .dash-header {
+            grid-column: span 4;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+        }
+
+        .dash-sidebar {
+            grid-column: span 1;
+            background: #34495e;
+            color: white;
+            padding: 20px;
+        }
+
+        .dash-content {
+            grid-column: span 3;
+            padding: 30px;
+        }
+
+        .dash-footer {
+            grid-column: span 4;
+            background: #e9ecef;
+            border-top: 1px solid #dee2e6;
+            padding: 15px 20px;
+        }
+
+        .dummy-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            padding: 40px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-grid">
+        <header class="dash-header">Dashboard Header</header>
+        
+        <aside class="dash-sidebar">Navigation Links</aside>
+        
+        <main class="dash-content">
+            <div class="dummy-card">
+                <h3>Main Workspace Content Area</h3>
+                <p>Occupies all remaining columns cleanly without flex wrappers.</p>
+            </div>
+        </main>
+        
+        <footer class="dash-footer">Footer Content Area</footer>
+    </div>
+
+</body>
+</html>
+TASK14:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 14</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+        .header { background: #2c3e50; color: white; padding: 20px; }
+        .main-wrapper { display: flex; }
+        .sidebar { width: 200px; background: #34495e; color: white; padding: 20px; }
+        .content-area { flex: 1; padding: 20px; }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .article {
+            background: white;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            border-radius: 4px;
+        }
+
+        /* Large feature article spans 2 rows and 2 columns */
+        .featured-article {
+            grid-column: span 2;
+            grid-row: span 2;
+            background: #fff;
+            border: 2px solid #e74c3c;
+        }
+        
+        .featured-article h2 { color: #e74c3c; margin-top: 0; }
+    </style>
+</head>
+<body>
+    <div class="header">Dashboard</div>
+    <div class="main-wrapper">
+        <div class="sidebar">Navigation</div>
+        <div class="content-area">
+            <div class="grid-container">
+                
+                <div class="article featured-article">
+                    <h2>Breaking News Feature</h2>
+                    <p>This major cover story item spans across two vertical row tracks and two horizontal column tracks dynamically.</p>
+                </div>
+                
+                <div class="article"><h4>Regular Post 1</h4><p>Short snippet text.</p></div>
+                <div class="article"><h4>Regular Post 2</h4><p>Short snippet text.</p></div>
+                <div class="article"><h4>Regular Post 3</h4><p>Short snippet text.</p></div>
+                <div class="article"><h4>Regular Post 4</h4><p>Short snippet text.</p></div>
+                <div class="article"><h4>Regular Post 5</h4><p>Short snippet text.</p></div>
+                <div class="article"><h4>Regular Post 6</h4><p>Short snippet text.</p></div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+TASK15:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 15</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+        .header { background: #2c3e50; color: white; padding: 20px; }
+        .main-wrapper { display: flex; }
+        .sidebar { width: 200px; background: #34495e; color: white; padding: 20px; }
+        .content-area { flex: 1; padding: 20px; }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+        }
+
+        .product-thumb {
+            height: 120px;
+            background: #eee;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        /* Highlighted Showcase item spans 2 horizontal slots */
+        .featured-product {
+            grid-column: span 2;
+            border: 2px solid #2ecc71;
+            background: #fafffa;
+        }
+        
+        .featured-product .product-thumb {
+            height: 180px;
+            background: #e2f7e9;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Dashboard</div>
+    <div class="main-wrapper">
+        <div class="sidebar">Navigation</div>
+        <div class="content-area">
+            <div class="grid-container">
+                
+                <!-- Highlighted Item -->
+                <div class="product-card featured-product">
+                    <div class="product-thumb"></div>
+                    <h3>🔥 Best Seller Product</h3>
+                    <p>A wider card presentation highlighting deals or primary conversions.</p>
+                </div>
+                
+                <!-- Standard Items -->
+                <div class="product-card">
+                    <div class="product-thumb"></div>
+                    <h3>Product Option A</h3>
+                    <p>Standard details.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-thumb"></div>
+                    <h3>Product Option B</h3>
+                    <p>Standard details.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-thumb"></div>
+                    <h3>Product Option C</h3>
+                    <p>Standard details.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+TASK16:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 16</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+            grid-template-areas: 
+                "header  header"
+                "sidebar main"
+                "footer  footer";
+        }
+
+        .header  { grid-area: header; background: #2c3e50; color: white; padding: 20px; }
+        .sidebar { grid-area: sidebar; background: #34495e; color: white; padding: 20px; }
+        .main    { grid-area: main; background: white; padding: 30px; }
+        .footer  { grid-area: footer; background: #e9ecef; border-top: 1px solid #dee2e6; padding: 15px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="layout-grid">
+        <header class="header">Header Section</header>
+        <aside class="sidebar">Sidebar Navigation</aside>
+        <main class="main">Main Content Body Area</main>
+        <footer class="footer">Footer Copy Section</footer>
+    </div>
+</body>
+</html>
+TASK17:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 17</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 220px 1fr 200px;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+            grid-template-areas: 
+                "header  header  header"
+                "menu    content ads"
+                "footer  footer  footer";
+        }
+
+        .header  { grid-area: header; background: #2c3e50; color: white; padding: 20px; }
+        .menu    { grid-area: menu; background: #34495e; color: white; padding: 20px; }
+        .content { grid-area: content; background: white; padding: 30px; }
+        .ads     { grid-area: ads; background: #f1f2f6; border-left: 1px solid #dee2e6; padding: 20px; }
+        .footer  { grid-area: footer; background: #e9ecef; border-top: 1px solid #dee2e6; padding: 15px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="admin-grid">
+        <header class="header">Admin Top Header Panel</header>
+        <nav class="menu">Left Navigation Menu Links</nav>
+        <main class="content">Central Admin Workspace Content</main>
+        <aside class="ads">Right Advertisements / Feed Panel</aside>
+        <footer class="footer">Admin System Status Bar Footer</footer>
+    </div>
+</body>
+</html>
+TASK18:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 18</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            grid-template-rows: auto auto 1fr auto;
+            min-height: 100vh;
+            grid-template-areas: 
+                "header  header"
+                "nav     nav"
+                "main    sidebar"
+                "footer  footer";
+        }
+
+        .header  { grid-area: header; background: #2c3e50; color: white; padding: 30px 20px; text-align: center; }
+        .nav     { grid-area: nav; background: #7f8c8d; color: white; padding: 12px 20px; }
+        .main    { grid-area: main; background: white; padding: 30px; }
+        .sidebar { grid-area: sidebar; background: #fbfbfc; border-left: 1px solid #dee2e6; padding: 25px; }
+        .footer  { grid-area: footer; background: #e9ecef; border-top: 1px solid #dee2e6; padding: 20px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="blog-grid">
+        <header class="header"><h1>The Daily Blog Chronicle</h1></header>
+        <nav class="nav">Home | Articles | Categories | About</nav>
+        <main class="main"><h2>Primary Published Article Content</h2><p>Blog post content details go here...</p></main>
+        <aside class="sidebar"><h3>Widget Sidebar</h3><p>Recent Posts, Tags, Categories list.</p></aside>
+        <footer class="footer">Blog Copyright Registration &copy; 2026</footer>
+    </div>
+</body>
+</html>
+TASK19:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 19</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+        .header { background: #2c3e50; color: white; padding: 20px; }
+        .main-wrapper { display: flex; }
+        .sidebar { width: 200px; background: #34495e; color: white; padding: 20px; }
+        .content-area { flex: 1; padding: 20px; }
+
+        /* Mobile First Default: 1 Column */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            text-align: center;
+            border-radius: 6px;
+        }
+
+        /* Tablet Viewport Rules */
+        @media (min-width: 600px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Desktop Viewport Rules */
+        @media (min-width: 1024px) {
+            .grid-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Dashboard</div>
+    <div class="main-wrapper">
+        <div class="sidebar">Navigation</div>
+        <div class="content-area">
+            <div class="grid-container">
+                <div class="product-card">Product 1</div>
+                <div class="product-card">Product 2</div>
+                <div class="product-card">Product 3</div>
+                <div class="product-card">Product 4</div>
+                <div class="product-card">Product 5</div>
+                <div class="product-card">Product 6</div>
+                <div class="product-card">Product 7</div>
+                <div class="product-card">Product 8</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+TASK20:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 20 - E-Commerce Mini Project</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f4f6f7; color: #333; }
+
+        /* Base Grid Layout Structure */
+        .homepage-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            grid-template-areas:
+                "header"
+                "nav"
+                "hero"
+                "categories"
+                "products"
+                "sidebar"
+                "reviews"
+                "footer";
+        }
+
+        /* Named Areas Assignment */
+        .site-header { grid-area: header; background: #2c3e50; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .site-nav    { grid-area: nav; background: #34495e; color: white; padding: 12px 20px; display: flex; gap: 20px; }
+        .hero-banner { grid-area: hero; background: #edeff1; border: 1px solid #dee2e6; padding: 60px 20px; text-align: center; border-radius: 6px; margin: 0 20px; }
+        .categories  { grid-area: categories; padding: 0 20px; }
+        .products    { grid-area: products; padding: 0 20px; }
+        .sidebar     { grid-area: sidebar; background: white; border: 1px solid #dee2e6; padding: 20px; border-radius: 6px; margin: 0 20px; }
+        .reviews     { grid-area: reviews; padding: 0 20px; }
+        .site-footer { grid-area: footer; background: #2c3e50; color: white; padding: 20px; text-align: center; margin-top: 20px; }
+
+        /* Element Inner Nested Grids */
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+        .cat-item { background: white; border: 1px solid #dee2e6; padding: 15px; text-align: center; border-radius: 4px; font-weight: bold; }
+
+        .prod-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .prod-card { background: white; border: 1px solid #dee2e6; padding: 20px; border-radius: 6px; display: flex; flex-direction: column; justify-content: space-between; }
+        .prod-img { height: 140px; background: #eaeded; border-radius: 4px; margin-bottom: 15px; }
+        .prod-price { font-weight: bold; color: #e74c3c; margin-top: 10px; }
+
+        .rev-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        .rev-card { background: white; border-left: 4px solid #3498db; padding: 15px; border-radius: 0 4px 4px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+
+        /* Desktop Response Rules Override */
+        @media (min-width: 992px) {
+            .homepage-grid {
+                grid-template-columns: 260px 1fr;
+                grid-template-areas:
+                    "header      header"
+                    "nav         nav"
+                    "hero        hero"
+                    "categories  categories"
+                    "sidebar     products"
+                    "reviews     reviews"
+                    "footer      footer";
+            }
+            .hero-banner, .sidebar { margin: 0; }
+            .categories, .products, .reviews { padding: 0; }
+            .homepage-grid { max-width: 1200px; margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="homepage-grid">
+        <header class="site-header">
+            <h2>ShopMax</h2>
+            <div>Cart (0) | Account</div>
+        </header>
+
+        <nav class="site-nav">
+            <div>Electronics</div>
+            <div>Fashion</div>
+            <div>Home & Living</div>
+            <div>Deals</div>
+        </nav>
+
+        <section class="hero-banner">
+            <h1>Mid-Year Clearance Sale!</h1>
+            <p>Get up to 50% off on all premium featured electronics products this week.</p>
+        </section>
+
+        <section class="categories">
+            <h3>Shop by Category</h3>
+            <div class="cat-grid">
+                <div class="cat-item">Audio</div>
+                <div class="cat-item">Mobile</div>
+                <div class="cat-item">Watches</div>
+                <div class="cat-item">Laptops</div>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <h3>Filter Products</h3>
+            <p>Price Ranges</p>
+            <p>Brand Names</p>
+            <p>Customer Ratings</p>
+        </aside>
+
+        <section class="products">
+            <h3>Featured Products</h3>
+            <div class="prod-grid">
+                <div class="prod-card">
+                    <div>
+                        <div class="prod-img"></div>
+                        <h4>Wireless Headphones</h4>
+                    </div>
+                    <div class="prod-price">$99.00</div>
+                </div>
+                <div class="prod-card">
+                    <div>
+                        <div class="prod-img"></div>
+                        <h4>Smart Fitness Watch</h4>
+                    </div>
+                    <div class="prod-price">$149.00</div>
+                </div>
+                <div class="prod-card">
+                    <div>
+                        <div class="prod-img"></div>
+                        <h4>Mechanical Keyboard</h4>
+                    </div>
+                    <div class="prod-price">$89.00</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews">
+            <h3>What Our Customers Say</h3>
+            <div class="rev-grid">
+                <div class="rev-card">
+                    <p>"Excellent item quality and super fast shipping! Will definitely buy again."</p>
+                    <strong>— Sarah M.</strong>
+                </div>
+                <div class="rev-card">
+                    <p>"The customer service response was incredibly helpful resolving my tracking order."</p>
+                    <strong>— David K.</strong>
+                </div>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <p>&copy; 2026 ShopMax E-Commerce Marketplace System</p>
+        </footer>
+    </div>
+
+</body>
+</html>
+
