@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <style>
+        /* Modern Reset & Base Foundations */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fafafa;
+            color: #262626;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* SCREEN MANAGEMENT: Dynamic View Toggle */
+        .hidden {
+            display: none !important;
+        }
+
+        /* ==========================================
+           SCREEN 1: LOGIN LANDING PAGE STYLES
+           ========================================== */
+        .login-screen-root {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .login-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            width: 100%;
+            max-width: 935px;
+            margin: 30px auto;
+        }
+
+        .page-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            width: 100%;
+            gap: 32px;
+        }
+
+        .preview-section {
+            display: none;
+            position: relative;
+            height: 581px;
+            width: 380px;
+        }
+
+        .phone-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/itshasibulhasan/instagram-login-page-clone/main/images/home-phones.png') no-repeat;
+            background-size: 465px;
+            background-position: -46px 0;
+        }
+
+        .screenshot-container {
+            position: absolute;
+            top: 27px;
+            right: 18px;
+            width: 250px;
+            height: 538px;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .screenshot {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            background-size: cover;
+            animation: fadeSlideshow 12s infinite ease-in-out;
+        }
+
+        .screenshot:nth-child(1) { background-image: url('https://raw.githubusercontent.com/itshasibulhasan/instagram-login-page-clone/main/images/screenshot1.png'); animation-delay: 0s; }
+        .screenshot:nth-child(2) { background-image: url('https://raw.githubusercontent.com/itshasibulhasan/instagram-login-page-clone/main/images/screenshot2.png'); animation-delay: 3s; }
+        .screenshot:nth-child(3) { background-image: url('https://raw.githubusercontent.com/itshasibulhasan/instagram-login-page-clone/main/images/screenshot3.png'); animation-delay: 6s; }
+        .screenshot:nth-child(4) { background-image: url('https://raw.githubusercontent.com/itshasibulhasan/instagram-login-page-clone/main/images/screenshot4.png'); animation-delay: 9s; }
+
+        @keyframes fadeSlideshow {
+            0%, 20% { opacity: 1; }
+            25%, 95% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .auth-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .box-panel {
+            background-color: #ffffff;
+            border: 1px solid #dbdbdb;
+            border-radius: 1px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-box {
+            margin-bottom: 30px;
+            width: 175px;
+            height: 51px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png') no-repeat center;
+            background-size: contain;
+        }
+
+        .login-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px 8px;
+            background: #fafafa;
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .btn-submit {
+            background-color: #0095f6;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 7px;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover { background-color: #1877f2; }
+
+        .separator { display: flex; align-items: center; width: 100%; margin: 20px 0; }
+        .separator .line { flex: 1; height: 1px; background-color: #dbdbdb; }
+        .separator .text { color: #8e8e8e; font-size: 13px; font-weight: 600; padding: 0 18px; text-transform: uppercase; }
+
+        .fb-login { color: #385185; font-weight: 600; font-size: 14px; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+        .forgot-password { color: #00376b; font-size: 12px; }
+        .toggle-box { padding: 20px; font-size: 14px; }
+        .toggle-box a { color: #0095f6; font-weight: 600; }
+        
+        .app-download { display: flex; flex-direction: column; align-items: center; gap: 15px; padding: 10px 0; font-size: 14px; }
+        .badges-row { display: flex; gap: 8px; }
+        .badges-row img { height: 40px; }
+
+        .login-footer { padding: 24px 20px; font-size: 12px; color: #8e8e8e; text-align: center; }
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-bottom: 15px; list-style: none; }
+
+
+        /* ==========================================
+           SCREEN 2: MOCK HOMEPAGE INSTAGRAM FEED
+           ========================================== */
+        .home-screen-root {
+            display: flex;
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* Left Navigation Sidebar Layout (Desktop Default) */
+        .sidebar-nav {
+            width: 245px;
+            border-right: 1px solid #dbdbdb;
+            padding: 25px 12px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            background: #fff;
+            z-index: 100;
+        }
+
+        .sidebar-logo {
+            width: 103px;
+            height: 29px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png') no-repeat left;
+            background-size: contain;
+            margin-bottom: 35px;
+            margin-left: 12px;
+        }
+
+        .nav-items {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            font-weight: 400;
+            transition: background 0.2s ease;
+        }
+        .nav-link:hover { background-color: #f2f2f2; font-weight: 700; }
+        .nav-link.active { font-weight: 700; }
+
+        /* Main Feed Workspace Framework */
+        .feed-main-container {
+            flex: 1;
+            margin-left: 245px;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            background-color: #ffffff;
+        }
+
+        .feed-content-area {
+            width: 100%;
+            max-width: 630px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Stories Top Bar Component */
+        .stories-container {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            overflow-x: auto;
+            scrollbar-width: none; /* Hide scrollbar for clean UI */
+        }
+        .stories-container::-webkit-scrollbar { display: none; }
+
+        .story-bubble {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            width: 66px;
+            cursor: pointer;
+        }
+
+        .story-ring {
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 4px;
+        }
+
+        .story-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: #bbb;
+            border: 2px solid white;
+        }
+
+        /* Post Card Element Components */
+        .post-card {
+            border-bottom: 1px solid #dbdbdb;
+            padding-bottom: 20px;
+            margin-bottom: 10px;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+
+        .post-user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .post-user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f09433, #bc1888);
+            padding: 2px;
+        }
+        .post-user-avatar .inner { width: 100%; height: 100%; background: #bbb; border-radius: 50%; border: 2px solid white; }
+
+        .post-img-frame {
+            width: 100%;
+            border-radius: 4px;
+            border: 1px solid #efefef;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            background: #f0f0f0 url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800') no-repeat center;
+            background-size: cover;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0 8px 0;
+        }
+        .post-actions-left { display: flex; gap: 16px; font-size: 22px; cursor: pointer; }
+
+        .post-details {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 14px;
+        }
+        .likes-count { font-weight: 600; }
+        .caption { line-height: 1.4; }
+        .caption span { font-weight: 600; margin-right: 5px; }
+        .view-comments { color: #8e8e8e; cursor: pointer; margin-top: 4px; }
+
+        /* Right Dashboard Sidebar (Desktop Only suggestions panel) */
+        .suggestions-sidebar {
+            width: 320px;
+            padding-top: 20px;
+            margin-left: 64px;
+            display: none;
+        }
+
+        .user-profile-switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .switch-link { color: #0095f6; font-weight: 600; cursor: pointer; }
+
+
+        /* ==========================================
+           RESPONSIVE OVERRIDES & BREAKPOINTS
+           ========================================== */
+        @media (min-width: 875px) {
+            .page-container { grid-template-columns: auto 350px; align-items: center; justify-content: center; }
+            .preview-section { display: block; }
+        }
+
+        @media (min-width: 1000px) {
+            .suggestions-sidebar { display: block; }
+        }
+
+        /* Mobile View Restructuring */
+        @media (max-width: 768px) {
+            .login-screen-root .box-panel, .login-screen-root .toggle-box { background-color: #ffffff; border: none; }
+
+            /* Home Feed Responsive Overrides */
+            .sidebar-nav {
+                width: 100%;
+                height: 50px;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                top: auto;
+                bottom: 0;
+                border-right: none;
+                border-top: 1px solid #dbdbdb;
+                padding: 0;
+            }
+            .sidebar-logo { display: none; }
+            .nav-items { flex-direction: row; width: 100%; justify-content: space-around; }
+            .nav-text { display: none; } /* Icons only bar */
+            
+            .feed-main-container { margin-left: 0; padding: 10px 10px 70px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+       SECTION 1: LOGIN AUTH VIEWPORT FRAMEWORK
+       ========================================== -->
+    <div id="loginScreen" class="login-screen-root">
+        <main class="login-main">
+            <div class="page-container">
+                <!-- Device Display Slideshow Canvas -->
+                <section class="preview-section">
+                    <div class="phone-frame">
+                        <div class="screenshot-container">
+                            <div class="screenshot"></div>
+                            <div class="screenshot"></div>
+                            <div class="screenshot"></div>
+                            <div class="screenshot"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Forms Configuration Panel -->
+                <section class="auth-section">
+                    <div class="box-panel">
+                        <div class="logo-box"></div>
+                        
+                        <!-- Added JavaScript dynamic switch call on submission -->
+                        <form class="login-form" onsubmit="handleMockLogin(event)">
+                            <input type="text" placeholder="Phone number, username, or email" value="demo_student" required>
+                            <input type="password" placeholder="Password" value="password123" required>
+                            <button type="submit" class="btn-submit">Log In</button>
+                        </form>
+
+                        <div class="separator">
+                            <div class="line"></div>
+                            <div class="text">or</div>
+                            <div class="line"></div>
+                        </div>
+
+                        <button class="fb-login">🔑 Log in with Facebook</button>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+
+                    <div class="box-panel toggle-box">
+                        <p>Don't have an account? <a href="#">Sign up</a></p>
+                    </div>
+
+                    <div class="app-download">
+                        <p>Get the app.</p>
+                        <div class="badges-row">
+                            <img src="https://static.cdninstagram.com/rsrc.php/v3/yz/r/c5Rp7Ym-Knp.png" alt="App Store">
+                            <img src="https://static.cdninstagram.com/rsrc.php/v3/yu/r/EHY6QnZYdNX.png" alt="Google Play">
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="login-footer">
+            <ul class="footer-links">
+                <li>Meta</li><li>About</li><li>Blog</li><li>Jobs</li><li>Help</li><li>API</li><li>Privacy</li><li>Terms</li>
+            </ul>
+            <div>©️ 2026 Instagram from Meta</div>
+        </footer>
+    </div>
+
+
+    <!-- ==========================================
+       SECTION 2: HOMEPAGE TIMELINE FEED VIEWPORT
+       ========================================== -->
+    <div id="homeScreen" class="home-screen-root hidden">
+        <!-- Control Left/Bottom Sticky Sidebar Navigation -->
+        <aside class="sidebar-nav">
+            <div class="sidebar-logo"></div>
+            <ul class="nav-items">
+                <li><a href="#" class="nav-link active">🏠 <span class="nav-text">Home</span></a></li>
+                <li><a href="#" class="nav-link">🔍 <span class="nav-text">Search</span></a></li>
+                <li><a href="#" class="nav-link">🧭 <span class="nav-text">Explore</span></a></li>
+                <li><a href="#" class="nav-link">🎬 <span class="nav-text">Reels</span></a></li>
+                <li><a href="#" class="nav-link">✉️ <span class="nav-text">Messages</span></a></li>
+                <li><a href="#" class="nav-link">❤️ <span class="nav-text">Notifications</span></a></li>
+                <li><a href="#" class="nav-link">➕ <span class="nav-text">Create</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Workspace Timeline Area -->
+        <main class="feed-main-container">
+            <div class="feed-content-area">
+                
+                <!-- Stories Module Row Carousel -->
+                <div class="stories-container">
+                    <div class="story-bubble"><div class="story-ring"><div class="story-avatar"></div></div><span>codex_99</span></div>
+                    <div class="story-bubble"><div class="story-ring"><div class="story-avatar"></div></div><span>dev_team</span></div>
+                    <div class="story-bubble"><div class="story-ring"><div class="story-avatar"></div></div><span>python_fsd</span></div>
+                    <div class="story-bubble"><div class="story-ring"><div class="story-avatar"></div></div><span>ui_master</span></div>
+                    <div class="story-bubble"><div class="story-ring"><div class="story-avatar"></div></div><span>design_hub</span></div>
+                </div>
+
+                <!-- Live Main Feed Post Card Column -->
+                <article class="post-card">
+                    <div class="post-header">
+                        <div class="post-user-info">
+                            <div class="post-user-avatar"><div class="inner"></div></div>
+                            <span>python_fsd_student</span>
+                        </div>
+                        <div>•••</div>
+                    </div>
+                    
+                    <div class="post-img-frame"></div>
+                    
+                    <div class="post-actions">
+                        <div class="post-actions-left">
+                            <span>❤️</span><span>💬</span><span>🚀</span>
+                        </div>
+                        <div>🔖</div>
+                    </div>
+                    
+                    <div class="post-details">
+                        <span class="likes-count">1,248 likes</span>
+                        <p class="caption"><span>python_fsd_student</span> Successfully deployed the dynamic Instagram web UI landing page workspace template setup! #CSS3 #Grid #Flexbox #Responsive</p>
+                        <span class="view-comments">View all 42 comments</span>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Panel Segment: Right Sticky Context Panel Widgets -->
+            <div class="suggestions-sidebar">
+                <div class="user-profile-switch">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <div class="story-avatar" style="width:44px; height:44px;"></div>
+                        <div><strong>demo_student</strong><p style="color:#8e8e8e; font-size:12px;">Full-Stack Developer</p></div>
+                    </div>
+                    <span class="switch-link" onclick="location.reload()">Switch</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:14px; margin-bottom:12px;">
+                    <span style="color:#8e8e8e; font-weight:600;">Suggested for you</span>
+                    <span style="font-weight:600; font-size:12px;">See All</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ==========================================
+       VANILLA INTERACTION DOM TOGGLE ROUTER
+       ========================================== -->
+    <script>
+        function handleMockLogin(event) {
+            event.preventDefault(); // Intercept page reload form cycle
+            
+            // Toggle visible screen mounts cleanly
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('homeScreen').classList.remove('hidden');
+            
+            // Adjust body view scope alignment properties for dynamic internal feed tracking
+            document.body.style.backgroundColor = "#ffffff";
+            window.scrollTo({ top: 0 });
+        }
+    </script>
+
+</body>
+</html>
